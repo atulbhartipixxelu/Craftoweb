@@ -1,0 +1,45 @@
+.hero-bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.bubble-1 {
+  width: 280px;
+  height: 280px;
+  background: var(--bubble-1);
+  top: 10%;
+  right: 15%;
+}
+
+.bubble-2 {
+  width: 180px;
+  height: 180px;
+  background: var(--bubble-2);
+  bottom: 20%;
+  left: 10%;
+}
+
+.bubble-3 {
+  width: 120px;
+  height: 120px;
+  background: var(--bubble-1);
+  top: 40%;
+  left: 40%;
+  opacity: 0.6;
+}
+
+.shield-icon {
+  position: absolute;
+  top: 18%;
+  right: 28%;
+  font-size: 2rem;
+  opacity: 0.5;
+}

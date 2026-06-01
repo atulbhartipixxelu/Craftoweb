@@ -1,0 +1,119 @@
+@import './Projects.css';
+
+.users-page-card {
+  padding: 24px;
+}
+
+.users-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.user-count {
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+.users-table .col-name {
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.user-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 20px;
+}
+
+.role-super_admin {
+  background: rgba(236, 72, 153, 0.15);
+  color: #ec4899;
+}
+
+.role-user {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+}
+
+.users-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+}
+
+.users-loading,
+.users-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px;
+}
+
+.users-forbidden {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.user-view-body {
+  text-align: center;
+}
+
+.user-view-avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.user-view-list {
+  text-align: left;
+}
+
+.user-view-list > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+  gap: 16px;
+}
+
+.user-view-list > div:last-child {
+  border-bottom: none;
+}
+
+.user-view-list dt {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.user-view-list dd {
+  font-size: 0.9375rem;
+  color: var(--text-main);
+  margin: 0;
+}

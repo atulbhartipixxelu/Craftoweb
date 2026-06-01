@@ -1,0 +1,30 @@
+.company-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.company-intro-lottie {
+  min-height: 360px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-intro-text p {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.company-intro-text .section-heading {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .company-intro-grid {
+    grid-template-columns: 1fr;
+  }
+}

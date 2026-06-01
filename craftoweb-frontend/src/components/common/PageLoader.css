@@ -1,0 +1,32 @@
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-base);
+}
+
+.page-loader-inner {
+  text-align: center;
+}
+
+.loader-lottie {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+}
+
+.page-loader-inner .logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.page-loader-inner .logo span {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
