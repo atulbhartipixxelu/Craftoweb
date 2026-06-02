@@ -1,11 +1,14 @@
+import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { HiOutlineArrowRight, HiOutlinePlay } from 'react-icons/hi';
 import { clientLogos, achievements } from '../../data/content';
 import AnimatedCounter from '../common/AnimatedCounter';
-import Hero3D from './Hero3D';
+import Hero3DFallback from './Hero3DFallback';
 import { useMouseParallax } from '../../hooks/useMouseParallax';
 import './HeroBanner.css';
+
+const Hero3D = lazy(() => import('./Hero3D'));
 
 function HeroBanner() {
   const logos = [...clientLogos, ...clientLogos];
@@ -60,7 +63,9 @@ function HeroBanner() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Hero3D />
+          <Suspense fallback={<Hero3DFallback />}>
+            <Hero3D />
+          </Suspense>
           <div className="hero-card hero-card-float card-glass">
             <span className="hero-float-icon">✦</span>
             <div>
