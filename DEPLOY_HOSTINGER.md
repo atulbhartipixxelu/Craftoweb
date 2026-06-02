@@ -1,14 +1,55 @@
 # Hostinger par CraftoWeb deploy (white screen fix)
 
-## Problem
+## Problem (aapka case)
+
+**View Source** mein yeh dikhe to galat deploy hai:
+
+```html
+<script type="module" src="/src/main.jsx"></script>
+```
+
+Yeh **development** `index.html` hai. Live par **`/assets/index-xxxxx.js`** hona chahiye.
+
+---
+
+## Turant fix (5 minute)
+
+### A) Local build + Git push
+
+```bash
+cd d:\Craftweb
+npm install
+npm run build:hostinger
+git add hostinger-public .htaccess
+git commit -m "Add production build for Hostinger"
+git push origin main
+```
+
+Hostinger Git pull hone do (2–5 min).
+
+### B) Hostinger File Manager
+
+`public_html` mein jao:
+
+1. **`index.html` DELETE karo** (jo `/src/main.jsx` wala hai) — **bahut zaroori**
+2. Check karo `hostinger-public/` folder hai jisme `index.html` + `assets/` + `.htaccess` ho
+3. Root par repo wala **`.htaccess`** bhi hona chahiye (assets redirect ke liye)
+
+### C) Ya seedha copy
+
+`hostinger-public` ki **saari** files `public_html` **root** par copy/paste karo (overwrite).
+
+---
+
+## Problem (general)
 
 Local par site chalti hai, live par **sirf white background** — iska matlab:
 
-1. **Galat files upload** — `src/` wala source code deploy ho gaya, `dist/` build nahi
+1. **Galat files upload** — `src/` wala source code deploy ho gaya, build nahi
 2. Ya **JS/CSS load nahi** ho rahi (404 on `/assets/...`)
 3. Ya **SPA routing** ke liye `.htaccess` missing hai
 
-`index.html` mein `/src/main.jsx` sirf **development** ke liye hai. Production par **`npm run build`** ke baad `dist/` folder chahiye.
+`index.html` mein `/src/main.jsx` sirf **development** ke liye hai. Production par **`npm run build:hostinger`** ke baad `hostinger-public/` folder chahiye.
 
 ---
 
