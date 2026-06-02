@@ -116,9 +116,11 @@ function AnimatedRoutes() {
 }
 
 function App() {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
+
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <AnimatedRoutes />
       </BrowserRouter>
     </ThemeProvider>
