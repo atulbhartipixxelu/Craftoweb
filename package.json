@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:hostinger": "vite build",
+    "build:hostinger": "node scripts/build-hostinger.mjs",
     "preview": "vite preview",
     "postbuild": "node -e \"const fs=require('fs');const p='dist/index.html';if(fs.existsSync(p)){const h=fs.readFileSync(p,'utf8');if(h.includes('/src/main')){console.error('\\nERROR: Build looks like dev index. Run vite build again.\\n');process.exit(1);}console.log('\\nDeploy: upload ALL files inside dist/ to public_html\\n');}\""
   },

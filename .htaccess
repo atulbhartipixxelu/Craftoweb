@@ -1,0 +1,20 @@
+# CraftoWeb — Git deploy fix (repo root = public_html)
+# Dev index.html has /src/main.jsx — production build is in hostinger-public/
+# On server: delete public_html/index.html once if white screen persists.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Production JS/CSS from build
+  RewriteRule ^assets/(.*)$ hostinger-public/assets/$1 [L]
+  RewriteRule ^favicon\.svg$ hostinger-public/favicon.svg [L]
+
+  # Home page → production index (not dev index.html)
+  RewriteRule ^$ hostinger-public/index.html [L]
+
+  # React Router — SPA routes
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ hostinger-public/index.html [L]
+</IfModule>
