@@ -44,6 +44,10 @@ npm run dev
 
 Open http://localhost:5174 — login with seeded super admin (see `api/CRAFTOWEB_SETUP.md`).
 
+## Deploy admin dashboard (Git)
+
+Push to `main` — GitHub Action builds `admin/` for Hostinger (`admin.craftoweb.com` → `public_html/admin`). See [DEPLOY_HOSTINGER.md](DEPLOY_HOSTINGER.md).
+
 ## Backend CORS
 
 The API allows both frontends. Configure in `api/.env`:

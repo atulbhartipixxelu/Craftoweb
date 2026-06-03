@@ -17,14 +17,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: npm
 
-      - run: npm ci
-      - run: npm run build:hostinger
+      - name: Build marketing site
+        run: |
+          npm ci
+          npm run build:hostinger
 
-      - name: Commit hostinger-public
+      - name: Build admin dashboard
+        run: |
+          npm ci
+          cd ..
+          npm run build:hostinger-admin
+        working-directory: dashboard-Backend
+        env:
+          VITE_API_URL: https://api.craftoweb.com/api
+
+      - name: Commit Hostinger builds
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'chore: production build for Hostinger (hostinger-public)'
-          file_pattern: hostinger-public/**
-          branch: ${{ github.ref_name }}
+          commit_message: 'chore: production builds for Hostinger (site + admin)'
+          file_pattern: |
+            hostinger-public/**
+            admin/**

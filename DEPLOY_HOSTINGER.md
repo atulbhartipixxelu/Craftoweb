@@ -146,8 +146,26 @@ npm run build
 
 ---
 
-## Dashboard / API
+## Dashboard (admin.craftoweb.com) — Git auto deploy
 
-- **Marketing site** = repo root → `dist` → `public_html`
-- **Admin dashboard** = alag subdomain/folder (`dashboard-Backend` ka apna build)
-- **Laravel API** = alag subdomain, `api/public` — website ke `public_html` se mix mat karo
+`main` par push → GitHub Action `dashboard-Backend` build karke **`admin/`** folder commit karti hai.
+
+| Setting | Value |
+|---------|--------|
+| Subdomain | `admin.craftoweb.com` |
+| Document root | `public_html/admin` |
+| Build output (repo) | `admin/` (`index.html` + `assets/` + `.htaccess`) |
+
+Local test:
+
+```bash
+cd dashboard-Backend && npm ci && cd ..
+npm run build:hostinger-admin
+```
+
+API URL change: `VITE_API_URL=... npm run build:hostinger-admin` ya `dashboard-Backend/.env.production`.
+
+## API (api.craftoweb.com)
+
+- Laravel = `api/public` — Git pull se code aata hai; server par `composer install` + `.env` manually
+- Marketing site ke `public_html` se mix mat karo
