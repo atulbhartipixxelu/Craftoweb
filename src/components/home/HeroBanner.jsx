@@ -41,7 +41,7 @@ function HeroBanner() {
               Start Your Project <HiOutlineArrowRight />
             </Link>
             <Link to="/work" className="btn btn-ghost">
-              <HiOutlinePlay /> View Portfolio
+              <HiOutlinePlay /> View Portfolios
             </Link>
           </div>
           <div className="hero-stats">
