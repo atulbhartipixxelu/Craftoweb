@@ -59,7 +59,7 @@ function Login() {
               </defs>
             </svg>
           </div>
-          <h1>NEXTGEN CODERSHUB</h1>
+          <h1>CraftoWeb</h1>
           <p>Admin Dashboard Login</p>
         </div>
 
