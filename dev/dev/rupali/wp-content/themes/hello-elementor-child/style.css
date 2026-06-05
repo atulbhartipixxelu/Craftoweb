@@ -1,0 +1,65 @@
+/*
+Theme Name: Hello Elementor Child
+Theme URI: https://example.com
+Description: Child Theme of Hello Elementor
+Author: Mukesh Kumar
+Author URI: https://example.com
+Template: hello-elementor
+Version: 1.0.0
+*/
+
+/* Custom CSS starts here */
+
+
+
+
+
+
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 50px;
+    background: #f5f7fa;
+}
+
+.auth-box {
+    background: #fff;
+    padding: 30px;
+    width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.auth-box h2 {
+    margin-bottom: 20px;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    background: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.auth-box button:hover {
+    background: #1565c0;
+}
+
+.response {
+    margin-top: 10px;
+    color: green;
+}
