@@ -4,7 +4,10 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DriverRideController;
 use App\Http\Controllers\Api\PlaceSearchController;
 use App\Http\Controllers\Api\RideController;
+use App\Support\VehicleTypes;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/vehicle-types', fn () => response()->json(['data' => VehicleTypes::forApi()]));
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/register/driver', [AuthController::class, 'registerDriver']);

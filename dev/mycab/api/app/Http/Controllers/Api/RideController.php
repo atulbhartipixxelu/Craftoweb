@@ -7,6 +7,7 @@ use App\Models\Driver;
 use App\Models\Ride;
 use App\Services\OsrmRoutingService;
 use App\Services\RideBookingNotifier;
+use App\Support\VehicleTypes;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -44,7 +45,7 @@ class RideController extends Controller
             'pickup_lng' => ['required', 'numeric', 'between:-180,180'],
             'dropoff_lat' => ['nullable', 'numeric', 'between:-90,90'],
             'dropoff_lng' => ['nullable', 'numeric', 'between:-180,180'],
-            'vehicle_type' => ['required', 'string', 'in:mini,sedan,suv'],
+            'vehicle_type' => ['required', 'string', VehicleTypes::validationRule()],
             'driver_id' => ['required', 'integer', 'exists:drivers,id'],
         ]);
 
@@ -98,7 +99,7 @@ class RideController extends Controller
             'pickup_lng' => ['required', 'numeric', 'between:-180,180'],
             'dropoff_lat' => ['nullable', 'numeric', 'between:-90,90'],
             'dropoff_lng' => ['nullable', 'numeric', 'between:-180,180'],
-            'vehicle_type' => ['required', 'string', 'in:mini,sedan,suv'],
+            'vehicle_type' => ['required', 'string', VehicleTypes::validationRule()],
         ]);
 
         return response()->json([
@@ -219,12 +220,7 @@ class RideController extends Controller
 
     private function estimateFare(string $vehicleType, float $distanceKm, float | null $ratePerKm = null): float
     {
-        $base = match ($vehicleType) {
-            'mini' => 49,
-            'sedan' => 69,
-            'suv' => 99,
-            default => 59,
-        };
+        $base = VehicleTypes::baseFare($vehicleType);
 
         return round($base + $distanceKm * ($ratePerKm ?? 14), 2);
     }

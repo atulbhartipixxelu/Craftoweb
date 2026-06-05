@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Drivers\Schemas;
 
+use App\Support\VehicleTypes;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -34,11 +35,7 @@ class DriverForm
                     ->email()
                     ->maxLength(255),
                 Select::make('vehicle_type')
-                    ->options([
-                        'mini' => 'Mini',
-                        'sedan' => 'Sedan',
-                        'suv' => 'SUV',
-                    ])
+                    ->options(VehicleTypes::labelOptions())
                     ->required(),
                 TextInput::make('cab_model')
                     ->label('Cab model')

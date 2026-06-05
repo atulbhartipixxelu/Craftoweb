@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
 use App\Models\User;
+use App\Support\VehicleTypes;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -51,7 +52,7 @@ class AuthController extends Controller
             'password' => ['required', 'confirmed', Password::defaults()],
             'phone' => ['required', 'string', 'max:32', Rule::unique('users', 'phone')],
             'accepted_terms' => ['required', 'accepted'],
-            'vehicle_type' => ['required', 'string', 'in:mini,sedan,suv'],
+            'vehicle_type' => ['required', 'string', VehicleTypes::validationRule()],
             'cab_model' => ['required', 'string', 'max:100'],
             'seating_capacity' => ['required', 'integer', 'min:1', 'max:12'],
             'rate_per_km' => ['required', 'numeric', 'min:1', 'max:9999'],

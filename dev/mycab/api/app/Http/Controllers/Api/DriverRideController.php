@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
 use App\Models\Ride;
+use App\Support\VehicleTypes;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -57,7 +58,7 @@ class DriverRideController extends Controller
             'name' => ['sometimes', 'string', 'max:255'],
             'phone' => ['sometimes', 'string', 'max:32', Rule::unique('users', 'phone')->ignore($user->id)],
             'email' => ['sometimes', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
-            'vehicle_type' => ['sometimes', 'string', 'in:mini,sedan,suv'],
+            'vehicle_type' => ['sometimes', 'string', VehicleTypes::validationRule()],
             'cab_model' => ['sometimes', 'string', 'max:100'],
             'seating_capacity' => ['sometimes', 'integer', 'min:1', 'max:12'],
             'rate_per_km' => ['sometimes', 'numeric', 'min:1', 'max:9999'],

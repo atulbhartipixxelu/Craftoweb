@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Rides\Schemas;
 
+use App\Support\VehicleTypes;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -36,11 +37,7 @@ class RideForm
                 TextInput::make('dropoff_lng')
                     ->numeric(),
                 Select::make('vehicle_type')
-                    ->options([
-                        'mini' => 'Mini',
-                        'sedan' => 'Sedan',
-                        'suv' => 'SUV',
-                    ])
+                    ->options(VehicleTypes::labelOptions())
                     ->required(),
                 Select::make('status')
                     ->options([
