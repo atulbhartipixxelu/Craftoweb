@@ -29,7 +29,7 @@ class VehicleTypeResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTruck;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSquaresPlus;
 
     public static function form(Schema $schema): Schema
     {

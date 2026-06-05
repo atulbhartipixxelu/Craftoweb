@@ -10,11 +10,19 @@ class IntegrationSettings
 {
     public static function applyToConfig(): void
     {
-        if (! Schema::hasTable('integration_configs')) {
+        try {
+            if (! Schema::hasTable('integration_configs')) {
+                return;
+            }
+        } catch (\Throwable) {
             return;
         }
 
-        $row = IntegrationConfig::current();
+        try {
+            $row = IntegrationConfig::current();
+        } catch (\Throwable) {
+            return;
+        }
 
         $apiKey = $row->google_places_api_key ?: env('GOOGLE_PLACES_API_KEY');
         $provider = $row->location_provider ?: env('LOCATION_PROVIDER', 'nominatim');
