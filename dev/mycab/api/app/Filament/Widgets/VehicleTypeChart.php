@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Driver;
+use App\Support\VehicleTypes;
 use Filament\Widgets\ChartWidget;
 
 class VehicleTypeChart extends ChartWidget
@@ -11,15 +12,18 @@ class VehicleTypeChart extends ChartWidget
 
     protected ?string $heading = 'Vehicles by type';
 
-    protected ?string $description = 'Registered driver vehicles grouped by Mini, Sedan and SUV.';
+    protected ?string $description = 'Registered driver vehicles by type.';
 
     protected function getData(): array
     {
-        $vehicleTypes = [
-            'mini' => 'Mini',
-            'sedan' => 'Sedan',
-            'suv' => 'SUV',
-        ];
+        $vehicleTypes = \App\Models\VehicleType::query()
+            ->orderBy('sort_order')
+            ->pluck('label', 'slug')
+            ->all();
+
+        if ($vehicleTypes === []) {
+            $vehicleTypes = VehicleTypes::labelOptions();
+        }
 
         $vehiclesByType = Driver::query()
             ->selectRaw('vehicle_type, COUNT(*) as total')
@@ -38,6 +42,8 @@ class VehicleTypeChart extends ChartWidget
                         '#06b6d4',
                         '#6366f1',
                         '#f97316',
+                        '#22c55e',
+                        '#eab308',
                     ],
                 ],
             ],
