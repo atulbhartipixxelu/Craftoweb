@@ -13,16 +13,24 @@ class VehicleTypes
      */
     public static function all(bool $activeOnly = true): array
     {
-        if (! Schema::hasTable('vehicle_types')) {
+        try {
+            if (! Schema::hasTable('vehicle_types')) {
+                return self::fromConfig();
+            }
+        } catch (\Throwable) {
             return self::fromConfig();
         }
 
-        $types = Cache::remember('himcab.vehicle_types', 3600, function () {
-            return VehicleType::query()
-                ->orderBy('sort_order')
-                ->orderBy('label')
-                ->get();
-        });
+        try {
+            $types = Cache::remember('himcab.vehicle_types', 3600, function () {
+                return VehicleType::query()
+                    ->orderBy('sort_order')
+                    ->orderBy('label')
+                    ->get();
+            });
+        } catch (\Throwable) {
+            return self::fromConfig();
+        }
 
         if ($types->isEmpty()) {
             return self::fromConfig();
