@@ -3,8 +3,11 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Driver;
+use App\Models\VehicleType;
 use App\Support\VehicleTypes;
 use Filament\Widgets\ChartWidget;
+use Illuminate\Support\Facades\Schema;
+use Throwable;
 
 class VehicleTypeChart extends ChartWidget
 {
@@ -16,39 +19,55 @@ class VehicleTypeChart extends ChartWidget
 
     protected function getData(): array
     {
-        $vehicleTypes = \App\Models\VehicleType::query()
-            ->orderBy('sort_order')
-            ->pluck('label', 'slug')
-            ->all();
-
-        if ($vehicleTypes === []) {
-            $vehicleTypes = VehicleTypes::labelOptions();
-        }
+        $vehicleTypes = $this->resolveVehicleTypeLabels();
 
         $vehiclesByType = Driver::query()
             ->selectRaw('vehicle_type, COUNT(*) as total')
             ->groupBy('vehicle_type')
             ->pluck('total', 'vehicle_type');
 
+        $slugs = array_keys($vehicleTypes);
+        $palette = ['#06b6d4', '#6366f1', '#f97316', '#22c55e', '#eab308', '#a855f7', '#ef4444'];
+
         return [
             'datasets' => [
                 [
                     'label' => 'Vehicles',
                     'data' => array_map(
-                        fn (string $type): int => (int) ($vehiclesByType[$type] ?? 0),
-                        array_keys($vehicleTypes),
+                        fn (string $slug): int => (int) ($vehiclesByType[$slug] ?? 0),
+                        $slugs,
                     ),
-                    'backgroundColor' => [
-                        '#06b6d4',
-                        '#6366f1',
-                        '#f97316',
-                        '#22c55e',
-                        '#eab308',
-                    ],
+                    'backgroundColor' => array_map(
+                        fn (int $index): string => $palette[$index % count($palette)],
+                        array_keys($slugs),
+                    ),
                 ],
             ],
             'labels' => array_values($vehicleTypes),
         ];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function resolveVehicleTypeLabels(): array
+    {
+        try {
+            if (Schema::hasTable('vehicle_types')) {
+                $fromDb = VehicleType::query()
+                    ->orderBy('sort_order')
+                    ->pluck('label', 'slug')
+                    ->all();
+
+                if ($fromDb !== []) {
+                    return $fromDb;
+                }
+            }
+        } catch (Throwable) {
+            // Fall through to config / helper.
+        }
+
+        return VehicleTypes::labelOptions();
     }
 
     protected function getType(): string
