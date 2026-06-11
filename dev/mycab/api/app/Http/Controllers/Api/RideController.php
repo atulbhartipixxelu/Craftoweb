@@ -90,7 +90,16 @@ class RideController extends Controller
      */
     public function driverOptions(Request $request): JsonResponse
     {
-        abort_unless($request->user()->role === 'passenger', 403, 'Passenger account required to book a ride.');
+        $user = $request->user();
+        if ($user === null) {
+            return response()->json(['message' => 'Unauthenticated.'], 401);
+        }
+
+        if ($user->role !== 'passenger') {
+            return response()->json([
+                'message' => 'Passenger account required to book a ride. Register or log in as a passenger (not admin).',
+            ], 403);
+        }
 
         $validated = $request->validate([
             'pickup_address' => ['required', 'string', 'max:500'],
@@ -102,11 +111,22 @@ class RideController extends Controller
             'vehicle_type' => ['required', 'string', VehicleTypes::validationRule()],
         ]);
 
-        return response()->json([
-            'radius_km' => self::DRIVER_SEARCH_RADIUS_KM,
-            'distance_km' => $this->resolveDistanceKm($validated),
-            'drivers' => $this->nearbyDriverOptions($validated),
-        ]);
+        try {
+            return response()->json([
+                'radius_km' => self::DRIVER_SEARCH_RADIUS_KM,
+                'distance_km' => $this->resolveDistanceKm($validated),
+                'drivers' => $this->nearbyDriverOptions($validated),
+            ]);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json([
+                'message' => 'Could not load nearby drivers. Check server migrations and driver seed data.',
+                'drivers' => [],
+                'radius_km' => self::DRIVER_SEARCH_RADIUS_KM,
+                'distance_km' => $this->resolveDistanceKm($validated),
+            ]);
+        }
     }
 
     /**

@@ -1,3 +1,15 @@
+.work-status,
+.work-loading {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 48px 16px;
+}
+
+.work-status-error {
+  color: #f87171;
+  margin-bottom: 24px;
+}
+
 .work-filters {
   display: flex;
   flex-wrap: wrap;

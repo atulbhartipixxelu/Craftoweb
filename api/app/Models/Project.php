@@ -50,4 +50,21 @@ class Project extends Model
             'value' => $this->value,
         ];
     }
+
+    public function toPortfolioArray(): array
+    {
+        $mockup = $this->mockups
+            ->first(fn (Mockup $m) => filled($m->image_url))
+            ?? $this->mockups->first();
+
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'client' => $this->client,
+            'technology' => $this->technology,
+            'status' => $this->status,
+            'image' => $mockup?->image_url,
+            'description' => $mockup?->description ?? '',
+        ];
+    }
 }

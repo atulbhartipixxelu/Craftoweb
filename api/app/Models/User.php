@@ -36,6 +36,17 @@ class User extends Authenticatable
         return $this->role === 'super_admin';
     }
 
+
+    public function isClient(): bool
+    {
+        return $this->role === 'api_client';
+    }
+
+    public function canAccessDocs(): bool
+    {
+        return in_array($this->role, ['api_client', 'user', 'super_admin'], true);
+    }
+
     public function toApiArray(): array
     {
         return [

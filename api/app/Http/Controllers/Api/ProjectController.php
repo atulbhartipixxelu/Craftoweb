@@ -12,6 +12,18 @@ use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
+    public function portfolio(): JsonResponse
+    {
+        $data = Project::query()
+            ->with('mockups')
+            ->whereIn('status', ['completed', 'active'])
+            ->orderByDesc('created_at')
+            ->get()
+            ->map->toPortfolioArray();
+
+        return response()->json(['data' => $data]);
+    }
+
     public function index(Request $request): JsonResponse
     {
         $query = Project::query()->orderByDesc('created_at');

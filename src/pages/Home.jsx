@@ -16,10 +16,10 @@ import SectionHeading from '../components/ui/SectionHeading';
 import CTABand from '../components/ui/CTABand';
 import {
   services,
-  projects,
   testimonials,
   blogPosts,
 } from '../data/content';
+import { usePortfolio } from '../hooks/usePortfolio';
 import './Home.css';
 
 const serviceIcons = [
@@ -31,6 +31,8 @@ const serviceIcons = [
 ];
 
 function Home() {
+  const { projects, loading: projectsLoading } = usePortfolio();
+
   return (
     <div className="home">
       {/* Hero Banner with 3D Animation */}
@@ -89,24 +91,30 @@ function Home() {
             </Link>
           </div>
           <div className="work-showcase">
-            {projects.slice(0, 4).map((p, i) => (
-              <Link
-                key={p.id}
-                to="/work"
-                className={`work-card card-glass gsap-reveal ${i === 0 ? 'work-featured' : ''}`}
-                data-aos="fade-up"
-                data-aos-delay={i * 80}
-              >
-                <div className="work-card-img">
-                  <img src={p.image} alt={p.title} loading="lazy" />
-                  <span className="work-cat">{p.category}</span>
-                </div>
-                <div className="work-card-body">
-                  <h3>{p.title}</h3>
-                  <p>{p.subtitle}</p>
-                </div>
-              </Link>
-            ))}
+            {projectsLoading ? (
+              <p className="work-loading">Loading featured projects...</p>
+            ) : projects.length > 0 ? (
+              projects.slice(0, 4).map((p, i) => (
+                <Link
+                  key={p.id}
+                  to="/work"
+                  className={`work-card card-glass gsap-reveal ${i === 0 ? 'work-featured' : ''}`}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 80}
+                >
+                  <div className="work-card-img">
+                    <img src={p.image} alt={p.title} loading="lazy" />
+                    <span className="work-cat">{p.category}</span>
+                  </div>
+                  <div className="work-card-body">
+                    <h3>{p.title}</h3>
+                    <p>{p.subtitle}</p>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p className="work-loading">Projects will appear here once added in the dashboard.</p>
+            )}
           </div>
         </div>
       </section>

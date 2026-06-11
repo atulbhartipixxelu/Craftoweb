@@ -10,8 +10,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -20,7 +21,7 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', 'confirmed', 'string', 'min:8'],
             'phone' => ['nullable', 'string', 'max:32'],
             'accepted_terms' => ['required', 'accepted'],
         ]);
@@ -46,53 +47,69 @@ class AuthController extends Controller
      */
     public function registerDriver(Request $request): JsonResponse
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed', Password::defaults()],
-            'phone' => ['required', 'string', 'max:32', Rule::unique('users', 'phone')],
-            'accepted_terms' => ['required', 'accepted'],
-            'vehicle_type' => ['required', 'string', VehicleTypes::validationRule()],
-            'cab_model' => ['required', 'string', 'max:100'],
-            'seating_capacity' => ['required', 'integer', 'min:1', 'max:12'],
-            'rate_per_km' => ['required', 'numeric', 'min:1', 'max:9999'],
-            'plate_number' => ['required', 'string', 'max:32', Rule::unique('drivers', 'plate_number')],
-        ]);
-
-        $payload = DB::transaction(function () use ($validated) {
-            $user = User::query()->create([
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'password' => $validated['password'],
-                'phone' => $validated['phone'],
-                'role' => 'driver',
+        try {
+            $validated = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+                'password' => ['required', 'confirmed', 'string', 'min:8'],
+                'phone' => ['required', 'string', 'max:32', Rule::unique('users', 'phone')],
+                'accepted_terms' => ['required', 'accepted'],
+                'vehicle_type' => ['required', 'string', VehicleTypes::validationRule()],
+                'cab_model' => ['required', 'string', 'max:100'],
+                'seating_capacity' => ['required', 'integer', 'min:1', 'max:12'],
+                'rate_per_km' => ['required', 'numeric', 'min:1', 'max:9999'],
+                'plate_number' => ['required', 'string', 'max:32', Rule::unique('drivers', 'plate_number')],
             ]);
 
-            $driver = Driver::query()->create([
-                'user_id' => $user->id,
-                'name' => $validated['name'],
-                'phone' => $validated['phone'],
-                'email' => $validated['email'],
-                'vehicle_type' => $validated['vehicle_type'],
-                'cab_model' => $validated['cab_model'],
-                'seating_capacity' => $validated['seating_capacity'],
-                'rate_per_km' => $validated['rate_per_km'],
-                'plate_number' => $validated['plate_number'],
-                'is_available' => true,
-                'latitude' => null,
-                'longitude' => null,
-            ]);
+            $payload = DB::transaction(function () use ($validated) {
+                $user = User::query()->create([
+                    'name' => $validated['name'],
+                    'email' => $validated['email'],
+                    'password' => $validated['password'],
+                    'phone' => $validated['phone'],
+                    'role' => 'driver',
+                ]);
 
-            $token = $user->createToken('auth')->plainTextToken;
+                $driver = Driver::query()->create([
+                    'user_id' => $user->id,
+                    'name' => $validated['name'],
+                    'phone' => $validated['phone'],
+                    'email' => $validated['email'],
+                    'vehicle_type' => $validated['vehicle_type'],
+                    'cab_model' => $validated['cab_model'],
+                    'seating_capacity' => (int) $validated['seating_capacity'],
+                    'rate_per_km' => (float) $validated['rate_per_km'],
+                    'plate_number' => $validated['plate_number'],
+                    'is_available' => true,
+                    'latitude' => null,
+                    'longitude' => null,
+                ]);
 
-            return [
-                'user' => $user->fresh(),
-                'driver' => $driver,
-                'token' => $token,
-            ];
-        });
+                $token = $user->createToken('auth')->plainTextToken;
 
-        return response()->json($payload, 201);
+                return [
+                    'user' => $user->fresh(),
+                    'driver' => $driver,
+                    'token' => $token,
+                ];
+            });
+
+            return response()->json($payload, 201);
+        } catch (ValidationException $e) {
+            throw $e;
+        } catch (QueryException $e) {
+            report($e);
+
+            return response()->json([
+                'message' => 'This email, phone, or plate number is already registered.',
+            ], 422);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json([
+                'message' => 'Driver registration failed. Please try again or contact support.',
+            ], 500);
+        }
     }
 
     public function login(Request $request): JsonResponse

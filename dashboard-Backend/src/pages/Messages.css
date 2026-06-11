@@ -1,0 +1,17 @@
+@import './Users.css';
+
+.row-unread {
+  font-weight: 600;
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.messages-detail {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color, #334155);
+}
+
+.messages-detail p {
+  white-space: pre-wrap;
+}

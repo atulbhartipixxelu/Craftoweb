@@ -22,35 +22,45 @@ class VehicleTypes
         }
 
         try {
-            $types = Cache::remember('himcab.vehicle_types', 3600, function () {
+            $types = Cache::remember('himcab.vehicle_types', 3600, function (): array {
                 return VehicleType::query()
                     ->orderBy('sort_order')
                     ->orderBy('label')
-                    ->get();
+                    ->get()
+                    ->map(fn (VehicleType $type): array => [
+                        'slug' => $type->slug,
+                        'label' => $type->label,
+                        'hint' => $type->hint,
+                        'base_fare' => (float) $type->base_fare,
+                        'is_active' => (bool) $type->is_active,
+                    ])
+                    ->all();
             });
         } catch (\Throwable) {
             return self::fromConfig();
         }
 
-        if ($types->isEmpty()) {
+        if (! is_array($types) || $types === []) {
+            Cache::forget('himcab.vehicle_types');
+
             return self::fromConfig();
         }
 
         $result = [];
 
         foreach ($types as $type) {
-            if ($activeOnly && ! $type->is_active) {
+            if ($activeOnly && ! ($type['is_active'] ?? true)) {
                 continue;
             }
 
-            $result[$type->slug] = [
-                'label' => $type->label,
-                'hint' => $type->hint,
-                'base_fare' => (float) $type->base_fare,
+            $result[$type['slug']] = [
+                'label' => $type['label'],
+                'hint' => $type['hint'],
+                'base_fare' => (float) $type['base_fare'],
             ];
         }
 
-        return $result;
+        return $result === [] ? self::fromConfig() : $result;
     }
 
     /**
@@ -100,15 +110,17 @@ class VehicleTypes
      */
     public static function forApi(): array
     {
-        return array_map(
-            fn (string $slug, array $meta): array => [
+        $data = [];
+
+        foreach (self::all() as $slug => $meta) {
+            $data[] = [
                 'id' => $slug,
                 'label' => $meta['label'],
                 'hint' => $meta['hint'] ?? null,
                 'base_fare' => (float) $meta['base_fare'],
-            ],
-            array_keys(self::all()),
-            array_values(self::all()),
-        );
+            ];
+        }
+
+        return $data;
     }
 }
