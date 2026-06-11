@@ -7,7 +7,25 @@ use App\Http\Controllers\Api\RideController;
 use App\Support\VehicleTypes;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/vehicle-types', fn () => response()->json(['data' => VehicleTypes::forApi()]));
+Route::get('/vehicle-types', function () {
+    try {
+        return response()->json(['data' => VehicleTypes::forApi()]);
+    } catch (\Throwable) {
+        $fallback = config('himcab.vehicle_types', []);
+        $data = [];
+
+        foreach ($fallback as $slug => $meta) {
+            $data[] = [
+                'id' => $slug,
+                'label' => $meta['label'] ?? (string) $slug,
+                'hint' => $meta['hint'] ?? null,
+                'base_fare' => (float) ($meta['base_fare'] ?? 0),
+            ];
+        }
+
+        return response()->json(['data' => $data]);
+    }
+});
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/register/driver', [AuthController::class, 'registerDriver']);
@@ -22,7 +40,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/places/reverse', [PlaceSearchController::class, 'reverse'])->middleware('throttle:20,1');
 
     Route::get('/rides', [RideController::class, 'index']);
-    Route::post('/rides/driver-options', [RideController::class, 'driverOptions'])->middleware('throttle:30,1');
+    Route::post('/rides/driver-options', [RideController::class, 'driverOptions']);
     Route::post('/rides', [RideController::class, 'store']);
     Route::get('/rides/{id}', [RideController::class, 'show']);
     Route::post('/rides/{ride}/cancel', [RideController::class, 'cancel']);

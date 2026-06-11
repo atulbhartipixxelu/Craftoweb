@@ -1,5 +1,4 @@
 # SPA: send index.html for client routes (fixes blank page on refresh).
-# If your app is NOT under /dev/mycab/, change RewriteBase to your folder or "/" for domain root.
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /dev/mycab/
