@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
 use App\Models\Ride;
+use App\Services\DriverCommissionService;
+use App\Support\DriverAvatars;
 use App\Support\VehicleTypes;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class DriverRideController extends Controller
@@ -19,10 +20,12 @@ class DriverRideController extends Controller
     public function me(Request $request): JsonResponse
     {
         $driver = $this->resolveDriver($request);
+        $commission = app(DriverCommissionService::class)->commissionSummaryForDriver($driver);
 
         return response()->json([
             'user' => $request->user(),
             'driver' => $driver,
+            'commission' => $commission,
         ]);
     }
 
@@ -70,10 +73,8 @@ class DriverRideController extends Controller
         ]);
 
         if ($request->hasFile('avatar')) {
-            if ($driver->avatar) {
-                Storage::disk('public')->delete($driver->avatar);
-            }
-            $validated['avatar'] = $request->file('avatar')->store('driver-avatars', 'public');
+            DriverAvatars::delete($driver->avatar);
+            $validated['avatar'] = DriverAvatars::store($request->file('avatar'));
         }
 
         $userFields = array_intersect_key($validated, array_flip(['name', 'email', 'phone']));
@@ -166,7 +167,21 @@ class DriverRideController extends Controller
             return response()->json(['message' => 'Only accepted or in-progress rides can be completed.'], 422);
         }
 
-        $ride->update(['status' => 'completed']);
+        $validated = $request->validate([
+            'fare_paid' => ['sometimes', 'numeric', 'min:0'],
+        ]);
+
+        $farePaid = array_key_exists('fare_paid', $validated)
+            ? (float) $validated['fare_paid']
+            : (float) $ride->fare_estimate;
+
+        $ride->update([
+            'status' => 'completed',
+            'payment_method' => config('himcab.payment_method', 'cash'),
+            'payment_status' => 'paid',
+            'fare_paid' => $farePaid,
+            'paid_at' => now(),
+        ]);
         $driver->update(['is_available' => true]);
 
         return response()->json($ride->fresh()->load(['user', 'driver']));

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DriverCommissionPaymentController;
 use App\Http\Controllers\Api\DriverRideController;
 use App\Http\Controllers\Api\PlaceSearchController;
 use App\Http\Controllers\Api\RideController;
@@ -31,13 +32,13 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/register/driver', [AuthController::class, 'registerDriver']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/places/config', [PlaceSearchController::class, 'config']);
+Route::get('/places/search', [PlaceSearchController::class, 'search'])->middleware('throttle:30,1');
+Route::get('/places/reverse', [PlaceSearchController::class, 'reverse'])->middleware('throttle:20,1');
+
 Route::middleware('auth:sanctum')->group(function (): void {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
-
-    Route::get('/places/config', [PlaceSearchController::class, 'config']);
-    Route::get('/places/search', [PlaceSearchController::class, 'search'])->middleware('throttle:30,1');
-    Route::get('/places/reverse', [PlaceSearchController::class, 'reverse'])->middleware('throttle:20,1');
 
     Route::get('/rides', [RideController::class, 'index']);
     Route::post('/rides/driver-options', [RideController::class, 'driverOptions']);
@@ -53,4 +54,9 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::post('/driver/rides/{ride}/accept', [DriverRideController::class, 'acceptRide']);
     Route::post('/driver/rides/{ride}/reject', [DriverRideController::class, 'rejectRide']);
     Route::post('/driver/rides/{ride}/complete', [DriverRideController::class, 'completeRide']);
+
+    Route::get('/driver/commission/payment-options', [DriverCommissionPaymentController::class, 'options']);
+    Route::post('/driver/commission/pay', [DriverCommissionPaymentController::class, 'initiate']);
+    Route::post('/driver/commission/verify-razorpay', [DriverCommissionPaymentController::class, 'verifyRazorpay']);
+    Route::get('/driver/commission/payment-status', [DriverCommissionPaymentController::class, 'status']);
 });

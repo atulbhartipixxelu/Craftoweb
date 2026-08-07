@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->validateCsrfTokens(except: [
+            'payments/phonepe/callback',
+        ]);
+
         $middleware->redirectGuestsTo(function (Request $request) {
             if ($request->expectsJson() || str_starts_with($request->path(), 'api/')) {
                 return null;

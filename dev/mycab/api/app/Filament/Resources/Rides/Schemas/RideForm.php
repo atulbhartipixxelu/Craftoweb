@@ -56,6 +56,21 @@ class RideForm
                 TextInput::make('fare_estimate')
                     ->required()
                     ->numeric(),
+                Select::make('payment_method')
+                    ->options([
+                        'cash' => 'Cash',
+                    ])
+                    ->placeholder('Not collected yet'),
+                Select::make('payment_status')
+                    ->options([
+                        'unpaid' => 'Unpaid',
+                        'paid' => 'Paid',
+                    ])
+                    ->default('unpaid')
+                    ->required(),
+                TextInput::make('fare_paid')
+                    ->numeric()
+                    ->label('Fare paid (cash)'),
             ]);
     }
 }

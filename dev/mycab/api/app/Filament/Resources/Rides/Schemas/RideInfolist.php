@@ -37,6 +37,18 @@ class RideInfolist
                     ->placeholder('-'),
                 TextEntry::make('fare_estimate')
                     ->numeric(),
+                TextEntry::make('payment_method')
+                    ->placeholder('-'),
+                TextEntry::make('payment_status')
+                    ->badge()
+                    ->color(fn (?string $state): string => $state === 'paid' ? 'success' : 'warning'),
+                TextEntry::make('fare_paid')
+                    ->label('Fare paid')
+                    ->numeric()
+                    ->placeholder('-'),
+                TextEntry::make('paid_at')
+                    ->dateTime()
+                    ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

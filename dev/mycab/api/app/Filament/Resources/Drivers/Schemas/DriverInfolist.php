@@ -34,6 +34,12 @@ class DriverInfolist
                 TextEntry::make('plate_number'),
                 IconEntry::make('is_available')
                     ->boolean(),
+                IconEntry::make('is_platform_enabled')
+                    ->label('Platform enabled'),
+                TextEntry::make('platform_disabled_reason')
+                    ->label('Disabled reason')
+                    ->placeholder('—')
+                    ->columnSpanFull(),
                 TextEntry::make('latitude')
                     ->numeric()
                     ->placeholder('-'),

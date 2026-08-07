@@ -12,7 +12,7 @@ class RevenueTrendChart extends ChartWidget
 
     protected ?string $heading = 'Confirmed revenue trend';
 
-    protected ?string $description = 'Daily fare estimate from accepted, in-progress and completed rides.';
+    protected ?string $description = 'Daily fare from accepted, in-progress and completed rides (cash recorded on completion).';
 
     protected int | string | array $columnSpan = 'full';
 
@@ -23,7 +23,7 @@ class RevenueTrendChart extends ChartWidget
         $revenueByDate = Ride::query()
             ->whereIn('status', ['accepted', 'in_progress', 'completed'])
             ->where('created_at', '>=', now()->subDays(6)->startOfDay())
-            ->selectRaw('DATE(created_at) as ride_date, COALESCE(SUM(fare_estimate), 0) as total')
+            ->selectRaw('DATE(created_at) as ride_date, COALESCE(SUM(CASE WHEN status = ? THEN COALESCE(fare_paid, fare_estimate) ELSE fare_estimate END), 0) as total', ['completed'])
             ->groupBy('ride_date')
             ->pluck('total', 'ride_date');
 

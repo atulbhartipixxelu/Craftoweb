@@ -56,6 +56,14 @@ class RidesTable
                 TextColumn::make('fare_estimate')
                     ->numeric()
                     ->sortable(),
+                TextColumn::make('payment_status')
+                    ->badge()
+                    ->color(fn (?string $state): string => $state === 'paid' ? 'success' : 'warning'),
+                TextColumn::make('fare_paid')
+                    ->label('Cash paid')
+                    ->numeric()
+                    ->sortable()
+                    ->placeholder('-'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
 use App\Models\Ride;
+use App\Services\DriverCommissionService;
 use App\Services\OsrmRoutingService;
 use App\Services\RideBookingNotifier;
 use App\Support\VehicleTypes;
@@ -256,13 +257,16 @@ class RideController extends Controller
         $rideDistanceKm = $this->resolveDistanceKm($validated);
 
         return Driver::query()
-            ->where('is_available', true)
+            ->availableForBooking()
             ->where('vehicle_type', $validated['vehicle_type'])
             ->whereNotNull('latitude')
             ->whereNotNull('longitude')
             ->orderByRaw('case when user_id is not null then 0 else 1 end')
             ->orderBy('id')
             ->get()
+            ->filter(function (Driver $driver): bool {
+                return ! app(DriverCommissionService::class)->blocksPassengerSearch($driver);
+            })
             ->map(function (Driver $driver) use ($pickupLat, $pickupLng, $rideDistanceKm, $validated): array {
                 $distanceToPickupKm = $this->haversineKm($pickupLat, $pickupLng, (float) $driver->latitude, (float) $driver->longitude);
                 $ratePerKm = $driver->rate_per_km ?? 14;

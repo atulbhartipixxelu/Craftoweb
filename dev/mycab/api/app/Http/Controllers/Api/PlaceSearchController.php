@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class PlaceSearchController extends Controller
 {
@@ -44,6 +45,7 @@ class PlaceSearchController extends Controller
         return response()->json([
             'provider' => $provider,
             'google_configured' => $google,
+            'fallback' => $google ? 'nominatim' : null,
             'label' => $provider === 'google' ? 'Google Geocoding API' : 'OpenStreetMap (Nominatim)',
         ]);
     }
@@ -60,57 +62,22 @@ class PlaceSearchController extends Controller
 
         if ($this->useGoogle()) {
             $cacheKey = 'places:google:search:'.md5(mb_strtolower($q));
-            $mapped = Cache::remember($cacheKey, now()->addMinutes(30), function () use ($q) {
-                return GooglePlacesService::fromConfig()->search($q);
-            });
+            $cached = Cache::get($cacheKey);
+            if (is_array($cached)) {
+                return response()->json($cached);
+            }
 
-            return response()->json(HimachalGeocoding::rankResults($q, $mapped));
+            $mapped = GooglePlacesService::fromConfig()->search($q);
+            if ($mapped !== []) {
+                Cache::put($cacheKey, $mapped, now()->addMinutes(30));
+
+                return response()->json($mapped);
+            }
+
+            Log::info('Google place search empty — falling back to Nominatim', ['q' => $q]);
         }
 
-        $cacheKey = 'places:search:'.md5(mb_strtolower($q));
-
-        $searchQ = HimachalGeocoding::searchQuery($q);
-
-        $mapped = Cache::remember($cacheKey, now()->addMinutes(30), function () use ($q, $searchQ) {
-            $response = $this->nominatimHttp()->get(self::NOMINATIM_BASE.'/search', [
-                'q' => $searchQ,
-                'format' => 'json',
-                'limit' => 12,
-                'addressdetails' => 1,
-                'countrycodes' => 'in',
-                'viewbox' => HimachalGeocoding::VIEWBOX,
-                'bounded' => 0,
-            ]);
-
-            if (! $response->successful()) {
-                return [];
-            }
-
-            $rows = $response->json();
-            if (! is_array($rows)) {
-                return [];
-            }
-
-            $mapped = collect($rows)->map(function (array $item) {
-                $lat = isset($item['lat']) ? (float) $item['lat'] : null;
-                $lng = isset($item['lon']) ? (float) $item['lon'] : null;
-                $label = self::formatNominatimLabel($item);
-
-                if ($label === '' || $lat === null || $lng === null) {
-                    return null;
-                }
-
-                return [
-                    'label' => $label,
-                    'lat' => $lat,
-                    'lng' => $lng,
-                ];
-            })->filter()->values()->all();
-
-            return HimachalGeocoding::rankResults($q, $mapped);
-        });
-
-        return response()->json($mapped);
+        return response()->json($this->nominatimSearch($q));
     }
 
     /**
@@ -125,21 +92,101 @@ class PlaceSearchController extends Controller
 
         $lat = (float) $validated['lat'];
         $lng = (float) $validated['lng'];
-        $cacheKey = ($this->useGoogle() ? 'places:google:reverse:' : 'places:reverse:').round($lat, 5).'_'.round($lng, 5);
-
-        $cached = Cache::get($cacheKey);
-        if (is_array($cached)) {
-            return response()->json($cached);
-        }
 
         if ($this->useGoogle()) {
-            $payload = GooglePlacesService::fromConfig()->reverse($lat, $lng);
-            if ($payload === null) {
-                return response()->json(['message' => 'Could not resolve location'], 422);
+            $cacheKey = 'places:google:reverse:'.round($lat, 5).'_'.round($lng, 5);
+            $cached = Cache::get($cacheKey);
+            if (is_array($cached)) {
+                return response()->json($cached);
             }
-            Cache::put($cacheKey, $payload, now()->addHours(24));
 
-            return response()->json($payload);
+            $payload = GooglePlacesService::fromConfig()->reverse($lat, $lng);
+            if ($payload !== null) {
+                Cache::put($cacheKey, $payload, now()->addHours(24));
+
+                return response()->json($payload);
+            }
+
+            Log::info('Google reverse geocode failed — falling back to Nominatim', [
+                'lat' => $lat,
+                'lng' => $lng,
+            ]);
+        }
+
+        $payload = $this->nominatimReverse($lat, $lng);
+        if ($payload === null) {
+            return response()->json(['message' => 'Could not resolve location'], 422);
+        }
+
+        return response()->json($payload);
+    }
+
+    /**
+     * @return array<int, array{label: string, lat: float, lng: float}>
+     */
+    private function nominatimSearch(string $q): array
+    {
+        $cacheKey = 'places:search:'.md5(mb_strtolower($q));
+        $cached = Cache::get($cacheKey);
+        if (is_array($cached)) {
+            return $cached;
+        }
+
+        $searchQ = HimachalGeocoding::searchQuery($q);
+
+        $response = $this->nominatimHttp()->get(self::NOMINATIM_BASE.'/search', [
+            'q' => $searchQ,
+            'format' => 'json',
+            'limit' => 12,
+            'addressdetails' => 1,
+            'countrycodes' => 'in',
+            'viewbox' => HimachalGeocoding::VIEWBOX,
+            'bounded' => 0,
+        ]);
+
+        if (! $response->successful()) {
+            return [];
+        }
+
+        $rows = $response->json();
+        if (! is_array($rows)) {
+            return [];
+        }
+
+        $mapped = collect($rows)->map(function (array $item) {
+            $lat = isset($item['lat']) ? (float) $item['lat'] : null;
+            $lng = isset($item['lon']) ? (float) $item['lon'] : null;
+            $label = self::formatNominatimLabel($item);
+
+            if ($label === '' || $lat === null || $lng === null) {
+                return null;
+            }
+
+            return [
+                'label' => $label,
+                'lat' => $lat,
+                'lng' => $lng,
+            ];
+        })->filter()->values()->all();
+
+        $mapped = HimachalGeocoding::rankResults($q, $mapped);
+
+        if ($mapped !== []) {
+            Cache::put($cacheKey, $mapped, now()->addMinutes(30));
+        }
+
+        return $mapped;
+    }
+
+    /**
+     * @return array{label: string, lat: float, lng: float}|null
+     */
+    private function nominatimReverse(float $lat, float $lng): ?array
+    {
+        $cacheKey = 'places:reverse:'.round($lat, 5).'_'.round($lng, 5);
+        $cached = Cache::get($cacheKey);
+        if (is_array($cached)) {
+            return $cached;
         }
 
         $response = $this->nominatimHttp()->get(self::NOMINATIM_BASE.'/reverse', [
@@ -150,21 +197,18 @@ class PlaceSearchController extends Controller
         ]);
 
         if (! $response->successful()) {
-            return response()->json(['message' => 'Could not resolve location'], 422);
+            return null;
         }
 
         $item = $response->json();
         if (! is_array($item)) {
-            return response()->json(['message' => 'Could not resolve location'], 422);
+            return null;
         }
 
         $label = $item['display_name'] ?? null;
         if (! is_string($label) || $label === '') {
-            return response()->json(['message' => 'Could not resolve location'], 422);
+            return null;
         }
-
-        $rlat = isset($item['lat']) ? (float) $item['lat'] : $lat;
-        $rlng = isset($item['lon']) ? (float) $item['lon'] : $lng;
 
         $payload = [
             'label' => $label,
@@ -174,7 +218,7 @@ class PlaceSearchController extends Controller
 
         Cache::put($cacheKey, $payload, now()->addHours(24));
 
-        return response()->json($payload);
+        return $payload;
     }
 
     /**

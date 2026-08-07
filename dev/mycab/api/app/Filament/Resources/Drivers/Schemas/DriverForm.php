@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Drivers\Schemas;
 
+use App\Support\DriverAvatars;
 use App\Support\VehicleTypes;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
@@ -18,8 +19,7 @@ class DriverForm
                 FileUpload::make('avatar')
                     ->label('Profile photo')
                     ->image()
-                    ->disk('public')
-                    ->directory('driver-avatars')
+                    ->disk(DriverAvatars::DISK)
                     ->imageEditor()
                     ->maxSize(4096)
                     ->columnSpanFull(),
@@ -56,6 +56,14 @@ class DriverForm
                 Toggle::make('is_available')
                     ->label('Available for new rides')
                     ->default(true),
+                Toggle::make('is_platform_enabled')
+                    ->label('Enabled on platform (passenger search)')
+                    ->default(true),
+                TextInput::make('platform_disabled_reason')
+                    ->label('Disabled reason (shown to driver)')
+                    ->maxLength(1000)
+                    ->columnSpanFull()
+                    ->visible(fn ($get): bool => ! $get('is_platform_enabled')),
                 TextInput::make('latitude')
                     ->numeric(),
                 TextInput::make('longitude')

@@ -47,6 +47,19 @@ return [
             'report' => false,
         ],
 
+        /*
+        | Driver profile photos — stored under public/driver-avatars so shared
+        | hosting (web root = api/) can serve them without storage:link.
+        */
+        'driver_avatars' => [
+            'driver' => 'local',
+            'root' => public_path('driver-avatars'),
+            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/public/driver-avatars',
+            'visibility' => 'public',
+            'throw' => true,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

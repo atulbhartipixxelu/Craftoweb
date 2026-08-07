@@ -22,7 +22,8 @@ class AdminStatsOverview extends StatsOverviewWidget
 
         $confirmedRevenue = Ride::query()
             ->whereIn('status', $confirmedStatuses)
-            ->sum('fare_estimate');
+            ->selectRaw('COALESCE(SUM(CASE WHEN status = ? THEN COALESCE(fare_paid, fare_estimate) ELSE fare_estimate END), 0) as total', ['completed'])
+            ->value('total');
 
         $bookedRides = Ride::query()->count();
         $pendingRides = Ride::query()->whereIn('status', ['pending', 'requested'])->count();
@@ -66,7 +67,7 @@ class AdminStatsOverview extends StatsOverviewWidget
 
         $revenueByDate = $this->dailyRideQuery()
             ->whereIn('status', ['accepted', 'in_progress', 'completed'])
-            ->selectRaw('DATE(created_at) as ride_date, COALESCE(SUM(fare_estimate), 0) as total')
+            ->selectRaw('DATE(created_at) as ride_date, COALESCE(SUM(CASE WHEN status = ? THEN COALESCE(fare_paid, fare_estimate) ELSE fare_estimate END), 0) as total', ['completed'])
             ->groupBy('ride_date')
             ->pluck('total', 'ride_date');
 

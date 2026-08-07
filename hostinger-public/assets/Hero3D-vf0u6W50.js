@@ -1,4 +1,4 @@
-import{j as Ot}from"./motion-KrkZhvxW.js";import{a as dy,g as py,R as my,r as Ze}from"./vendor-BW9moFMk.js";import{I as YM}from"./index-iGCBHT6R.js";import"./Home-CE9aUrEY.js";import"./AnimatedCounter-BaYx-ezs.js";import"./SectionHeading-PqyIYEOf.js";/* empty css                       */import"./CTABand-3-XO85Ff.js";import"./usePortfolio-BPV7ujd6.js";/**
+import{j as Ot}from"./motion-KrkZhvxW.js";import{a as dy,g as py,R as my,r as Ze}from"./vendor-BW9moFMk.js";import{I as YM}from"./index-65Y1Yocl.js";import"./Home-BZvbNKfK.js";import"./AnimatedCounter-BaYx-ezs.js";import"./SectionHeading-PqyIYEOf.js";/* empty css                       */import"./CTABand-DW8zi6uI.js";import"./usePortfolio-BPV7ujd6.js";/**
  * @license
  * Copyright 2010-2025 Three.js Authors
  * SPDX-License-Identifier: MIT
