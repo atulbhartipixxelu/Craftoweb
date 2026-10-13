@@ -7,6 +7,7 @@ import PageLoader from '../common/PageLoader';
 import Header from './Header';
 import Footer from './Footer';
 import FloatingContact from './FloatingContact';
+import HireBidderPopup from './HireBidderPopup';
 import { useGsapScroll } from '../../hooks/useGsapScroll';
 
 function Layout() {
@@ -14,7 +15,7 @@ function Layout() {
   useGsapScroll(pathname);
 
   useEffect(() => {
-    AOS.init({ duration: 650, once: true, offset: 48, easing: 'ease-out-cubic' });
+    AOS.init({ duration: 800, once: false, offset: 60, easing: 'ease-out-cubic' });
   }, []);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function Layout() {
       </main>
       <Footer />
       <FloatingContact />
+      <HireBidderPopup />
     </SmoothScroll>
   );
 }

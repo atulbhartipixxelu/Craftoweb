@@ -1,187 +1,201 @@
 import { Link } from 'react-router-dom';
-import {
-  HiOutlineArrowRight,
-  HiOutlineCode,
-  HiOutlineColorSwatch,
-  HiOutlineDatabase,
-  HiOutlineLightningBolt,
-  HiOutlineTrendingUp,
-  HiOutlineStar,
-} from 'react-icons/hi';
-import HeroBanner from '../components/home/HeroBanner';
-import CompanyIntro from '../components/home/CompanyIntro';
-import WhyChoose from '../components/home/WhyChoose';
-import ProcessTimeline from '../components/home/ProcessTimeline';
-import SectionHeading from '../components/ui/SectionHeading';
-import CTABand from '../components/ui/CTABand';
+import { HiOutlineArrowRight } from 'react-icons/hi';
 import {
   services,
+  projects,
+  toolLogos,
+  achievements,
+  processSteps,
   testimonials,
   blogPosts,
+  companyInfo,
 } from '../data/content';
-import { usePortfolio } from '../hooks/usePortfolio';
+import TalentWheel from '../components/home/TalentWheel';
 import './Home.css';
 
-const serviceIcons = [
-  HiOutlineColorSwatch,
-  HiOutlineCode,
-  HiOutlineDatabase,
-  HiOutlineLightningBolt,
-  HiOutlineTrendingUp,
-];
-
 function Home() {
-  const { projects, loading: projectsLoading } = usePortfolio();
+  const logos = [...toolLogos, ...toolLogos, ...toolLogos];
 
   return (
-    <div className="home">
-      {/* Hero Banner with 3D Animation */}
-      <HeroBanner />
-
-      {/* Company Introduction */}
-      <CompanyIntro />
-
-      {/* Services Overview */}
-      <section className="section home-services">
-        <div className="container">
-          <SectionHeading
-            eyebrow="Services Overview"
-            title="Everything your brand needs online"
-            description="UI/UX Design · Web Development · CMS · Front-End · Digital Marketing"
-            align="center"
-          />
-          <div className="services-bento">
-            {services.map((s, i) => {
-              const Icon = serviceIcons[i] || HiOutlineCode;
-              return (
-                <Link
-                  key={s.id}
-                  to={`/services#${s.id}`}
-                  className={`service-tile card-glass gsap-reveal ${i === 0 ? 'span-2' : ''}`}
-                  data-aos="fade-up"
-                  data-aos-delay={i * 60}
-                >
-                  <Icon className="service-tile-icon" />
-                  <h3>{s.title}</h3>
-                  <p>{s.description}</p>
-                  <span className="service-tile-link">
-                    Explore service <HiOutlineArrowRight />
-                  </span>
-                </Link>
-              );
-            })}
+    <div className="shine-home">
+      <section className="shine-hero">
+        <div className="container shine-hero-grid">
+          <div>
+            <p className="shine-kicker">Digital studio · Est. for ambitious brands</p>
+            <h1>
+              Designing & developing
+              <span> beyond the ordinary</span>
+            </h1>
+            <p>
+              Elevate your business with next-generation websites, product design, and development. We build work that
+              captivates, converts, and connects.
+            </p>
+            <div className="shine-hero-actions">
+              <Link to="/contact" className="btn btn-primary">
+                Get a quote
+              </Link>
+              <Link to="/work" className="shine-link">
+                See our work <HiOutlineArrowRight />
+              </Link>
+            </div>
+            <div className="shine-clients">
+              <strong>400+</strong>
+              <span>Clients & projects</span>
+            </div>
+          </div>
+          <div className="shine-hero-visual">
+            <span className="shine-hero-rail">{projects[0].category}</span>
+            <img src={projects[0].image} alt={projects[0].title} />
+            <div className="shine-float-card">
+              <img src={projects[2].image} alt="" />
+              <div>
+                <strong>{projects[0].title}</strong>
+                <span>{projects[0].category}</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose CraftoWeb */}
-      <WhyChoose />
+      <section className="shine-tech">
+        <div className="container shine-tech-head">
+          <h2>Our tech expertise</h2>
+        </div>
+        <div className="shine-marquee" aria-hidden="true">
+          <div>
+            {logos.map((name, i) => (
+              <span key={`${name}-${i}`}>{name}</span>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* Featured Projects */}
-      <section className="section home-work">
-        <div className="container">
-          <div className="work-header">
-            <SectionHeading
-              eyebrow="Featured Projects"
-              title="Work we're proud of"
-              description="Case studies across SaaS, e-commerce, fintech, and education."
-            />
-            <Link to="/work" className="btn btn-ghost">
-              View portfolio <HiOutlineArrowRight />
+      <section className="shine-who">
+        <div className="container shine-who-grid">
+          <div>
+            <p className="shine-label">Who are we?</p>
+            <h2>A studio that turns complex ideas into working products.</h2>
+          </div>
+          <div>
+            <p>
+              CraftoWeb has spent years building websites, stores, and platforms for ambitious teams. From UI/UX and
+              front-end to Laravel, Node, and Shopify, we stay with the work until it is live and useful.
+            </p>
+            <Link to="/about" className="shine-link">
+              Read more <HiOutlineArrowRight />
             </Link>
           </div>
-          <div className="work-showcase">
-            {projectsLoading ? (
-              <p className="work-loading">Loading featured projects...</p>
-            ) : projects.length > 0 ? (
-              projects.slice(0, 4).map((p, i) => (
-                <Link
-                  key={p.id}
-                  to="/work"
-                  className={`work-card card-glass gsap-reveal ${i === 0 ? 'work-featured' : ''}`}
-                  data-aos="fade-up"
-                  data-aos-delay={i * 80}
-                >
-                  <div className="work-card-img">
-                    <img src={p.image} alt={p.title} loading="lazy" />
-                    <span className="work-cat">{p.category}</span>
-                  </div>
-                  <div className="work-card-body">
-                    <h3>{p.title}</h3>
-                    <p>{p.subtitle}</p>
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <p className="work-loading">Projects will appear here once added in the dashboard.</p>
-            )}
-          </div>
         </div>
       </section>
 
-      {/* Client Testimonials */}
-      <section className="section home-testimonials">
+      <section className="shine-process">
         <div className="container">
-          <SectionHeading
-            eyebrow="Client Testimonials"
-            title="Trusted by leaders worldwide"
-            align="center"
-          />
-          <div className="testimonial-grid">
-            {testimonials.map((t, i) => (
-              <article key={t.id} className="testimonial-card card-glass gsap-reveal" data-aos="fade-up" data-aos-delay={i * 70}>
-                <div className="testimonial-stars">
-                  {[...Array(t.rating)].map((_, j) => (
-                    <HiOutlineStar key={j} />
-                  ))}
-                </div>
-                <p>&ldquo;{t.text}&rdquo;</p>
-                <footer>
-                  <img src={t.avatar} alt={t.name} loading="lazy" />
-                  <div>
-                    <strong>{t.name}</strong>
-                    <span>{t.role}</span>
-                  </div>
-                </footer>
+          <div className="shine-section-head">
+            <div>
+              <p className="shine-label">How we work</p>
+              <h2>A clear path from first call to launch.</h2>
+            </div>
+            <p>Six stages. One team. No handoff surprises.</p>
+          </div>
+          <ol className="shine-steps">
+            {processSteps.map((step) => (
+              <li key={step.step}>
+                <span>{step.step}</span>
+                <h3>{step.title}</h3>
+                <p>{step.subtitle}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="shine-offer">
+        <div className="container">
+          <p className="shine-label">What we offer</p>
+          <h2>Turn to our services and make the business part of the build.</h2>
+          <div className="shine-pills">
+            {services.flatMap((s) => s.items.slice(0, 2)).slice(0, 10).map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+          <div className="shine-cards">
+            {services.map((service) => (
+              <article key={service.id} className="shine-card">
+                <img src={service.image} alt="" />
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <Link to={`/services#${service.id}`} className="shine-estimate">
+                  Get estimate <HiOutlineArrowRight />
+                </Link>
               </article>
             ))}
           </div>
-          <div className="testimonial-cta" data-aos="fade-up">
-            <Link to="/reviews" className="btn btn-outline">
-              All reviews <HiOutlineArrowRight />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Process Timeline — GSAP */}
-      <ProcessTimeline />
+      <section className="shine-stats">
+        <div className="container shine-stats-row">
+          {achievements.map((item) => (
+            <div key={item.label}>
+              <strong>
+                {item.value}
+                {item.suffix}
+              </strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      {/* Blog Highlights */}
-      <section className="section home-blog">
+      <TalentWheel />
+
+      <section className="shine-quotes">
         <div className="container">
-          <div className="work-header">
-            <SectionHeading eyebrow="Blog Highlights" title="Latest insights" />
-            <Link to="/blog" className="btn btn-ghost">
-              View all articles <HiOutlineArrowRight />
+          <p className="shine-label">Client notes</p>
+          <blockquote>
+            <p>&ldquo;{testimonials[0].text}&rdquo;</p>
+            <footer>
+              <img src={testimonials[0].avatar} alt="" />
+              <div>
+                <strong>{testimonials[0].name}</strong>
+                <span>{testimonials[0].role}</span>
+              </div>
+            </footer>
+          </blockquote>
+          <div className="shine-quote-row">
+            {testimonials.slice(1, 4).map((item) => (
+              <article key={item.id}>
+                <p>&ldquo;{item.text}&rdquo;</p>
+                <strong>{item.name}</strong>
+                <span>{item.role}</span>
+              </article>
+            ))}
+          </div>
+          <Link to="/reviews" className="shine-link">
+            All reviews <HiOutlineArrowRight />
+          </Link>
+        </div>
+      </section>
+
+      <section className="shine-work">
+        <div className="container">
+          <div className="shine-work-head">
+            <div>
+              <p className="shine-label">Portfolio</p>
+              <h2>Selected work</h2>
+            </div>
+            <Link to="/work" className="shine-link">
+              View all <HiOutlineArrowRight />
             </Link>
           </div>
-          <div className="blog-grid">
-            {blogPosts.slice(0, 3).map((post, i) => (
-              <Link
-                key={post.id}
-                to={`/blog/${post.slug}`}
-                className="blog-card card-glass gsap-reveal"
-                data-aos="fade-up"
-                data-aos-delay={i * 80}
-              >
-                <div className="blog-card-img">
-                  <img src={post.image} alt={post.title} loading="lazy" />
-                </div>
-                <div className="blog-card-body">
-                  <span>{post.category} · {post.readTime}</span>
-                  <h3>{post.title}</h3>
-                  <p>{post.excerpt}</p>
+          <div className="shine-work-grid">
+            {projects.slice(0, 3).map((project) => (
+              <Link key={project.id} to="/work" className="shine-work-card">
+                <img src={project.image} alt={project.title} />
+                <div>
+                  <span>{project.category}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.subtitle}</p>
                 </div>
               </Link>
             ))}
@@ -189,13 +203,48 @@ function Home() {
         </div>
       </section>
 
-      {/* Contact CTA Section */}
-      <CTABand
-        title="Have a project in mind?"
-        subtitle="Let's build something extraordinary together. Get in touch for a free consultation."
-        buttonText="Contact Us"
-        buttonTo="/contact"
-      />
+      <section className="shine-insights">
+        <div className="container">
+          <div className="shine-section-head">
+            <div>
+              <p className="shine-label">Insights</p>
+              <h2>Notes from the studio.</h2>
+            </div>
+            <Link to="/blog" className="shine-link">
+              All articles <HiOutlineArrowRight />
+            </Link>
+          </div>
+          <div className="shine-posts">
+            {blogPosts.slice(0, 3).map((post) => (
+              <Link key={post.id} to={`/blog/${post.slug}`} className="shine-post">
+                <img src={post.image} alt="" />
+                <span>{post.category}</span>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="shine-cta">
+        <div className="container shine-cta-grid">
+          <div>
+            <p className="shine-label shine-label-light">Start a project</p>
+            <h2>
+              Like what you see?
+              <span> Let’s start a conversation.</span>
+            </h2>
+          </div>
+          <div className="shine-cta-side">
+            <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+            <a href={`tel:${companyInfo.phone.replace(/\s/g, '')}`}>{companyInfo.phone}</a>
+            <Link to="/contact" className="btn btn-primary">
+              Get in touch
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

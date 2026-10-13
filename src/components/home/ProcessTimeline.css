@@ -1,5 +1,19 @@
 .process-timeline-section {
-  background: var(--bg-raised);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.process-timeline-section .eyebrow {
+  color: var(--ochre);
+}
+
+.process-timeline-section .section-heading-title,
+.process-timeline-section .display-lg {
+  color: var(--paper);
+}
+
+.process-timeline-section .section-heading-desc {
+  color: rgba(243, 238, 230, 0.62);
 }
 
 .process-timeline-wrap {
@@ -10,11 +24,11 @@
 
 .process-line {
   position: absolute;
-  left: 28px;
+  left: 27px;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: var(--gradient-brand);
+  width: 1px;
+  background: var(--ochre);
   transform-origin: top;
   transform: scaleY(0);
 }
@@ -22,52 +36,54 @@
 .process-timeline-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .process-timeline-item {
   display: flex;
   gap: 24px;
-  padding: 28px 32px;
-  margin-left: 0;
-  position: relative;
+  padding: 28px 30px;
+  border: 1px solid rgba(243, 238, 230, 0.12);
+  background: rgba(243, 238, 230, 0.03);
 }
 
 .process-dot {
   flex-shrink: 0;
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 800;
-  background: var(--gradient-brand);
-  color: #030712;
+  font-size: 1rem;
+  font-style: italic;
+  color: #12100e;
+  background: var(--ochre);
   border-radius: 50%;
   z-index: 1;
 }
 
 .process-timeline-item h4 {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 400;
   margin-bottom: 4px;
+  color: var(--paper);
 }
 
 .process-timeline-item small {
   display: block;
   font-size: 0.75rem;
-  color: var(--accent-cyan);
-  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ochre);
   margin-bottom: 10px;
 }
 
 .process-timeline-item p {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.65;
+  font-size: 0.92rem;
+  color: rgba(243, 238, 230, 0.65);
+  line-height: 1.7;
 }
 
 @media (max-width: 560px) {
@@ -75,12 +91,12 @@
     left: 20px;
   }
   .process-timeline-item {
-    padding: 20px;
+    padding: 22px 18px;
     gap: 16px;
   }
   .process-dot {
     width: 44px;
     height: 44px;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 }

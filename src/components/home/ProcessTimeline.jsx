@@ -25,7 +25,7 @@ function ProcessTimeline() {
         scrollTrigger: {
           trigger: section,
           start: 'top 70%',
-          end: 'bottom 30%',
+          end: 'bottom 35%',
           scrub: 1,
         },
       }
@@ -38,9 +38,9 @@ function ProcessTimeline() {
     <section className="section process-timeline-section" ref={sectionRef}>
       <div className="container">
         <SectionHeading
-          eyebrow="Process Timeline"
-          title="From idea to launch in six steps"
-          description="Our proven workflow keeps every project on track — transparent, collaborative, and results-driven."
+          eyebrow="Process"
+          title="From brief to launch"
+          description="A clear path — no mystery, no chaos."
           align="center"
         />
         <div className="process-timeline-wrap">
@@ -49,9 +49,9 @@ function ProcessTimeline() {
             {processSteps.map((step, i) => (
               <div
                 key={step.step}
-                className={`process-timeline-item card-glass gsap-reveal ${i % 2 === 1 ? 'alt' : ''}`}
+                className="process-timeline-item gsap-reveal"
                 data-aos="fade-up"
-                data-aos-delay={i * 80}
+                data-aos-delay={i * 60}
               >
                 <span className="process-dot">{step.step}</span>
                 <div>

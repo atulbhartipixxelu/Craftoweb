@@ -33,10 +33,24 @@
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
 .animate-marquee {
   animation: marquee 35s linear infinite;
+}
+
+.perspective-wrap {
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }

@@ -1,7 +1,8 @@
 export const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About Us' },
-  { path: '/services', label: 'Services' },
+  { path: '/services', label: 'Services', hasMega: true },
+  { path: '/work', label: 'Portfolio' },
   { path: '/blog', label: 'Blog' },
   { path: '/reviews', label: 'Reviews' },
   { path: '/contact', label: 'Contact Us' },
@@ -9,34 +10,25 @@ export const navLinks = [
 
 export const whyChoose = [
   {
-    title: 'Human-Centered Design',
-    desc: 'Every pixel is crafted around real user needs — driving engagement and conversions.',
+    title: 'Stand out with style',
+    tag: 'Design to impress',
+    subtitle: 'Latest UI/UX Design',
+    desc: 'Websites. SaaS products. Mobile apps — crafted to convert and delight.',
     icon: 'design',
   },
   {
-    title: 'Modern Tech Stack',
-    desc: 'React, Next.js, WordPress, and Shopify — built for speed, scale, and SEO.',
+    title: 'Exceptional front-end speed',
+    tag: 'Code to move fast',
+    subtitle: 'React & modern UI',
+    desc: 'Clean React, Next.js, and responsive interfaces that feel instant.',
     icon: 'code',
   },
   {
-    title: 'Transparent Process',
-    desc: 'Clear timelines, weekly updates, and no surprises from kickoff to launch.',
-    icon: 'process',
-  },
-  {
-    title: 'Measurable Results',
-    desc: 'We track performance metrics so you see real ROI on your investment.',
+    title: 'Engineered for strength',
+    tag: 'Backend built to scale',
+    subtitle: 'Robust development',
+    desc: 'Laravel, Node.js, and APIs that stay solid as your traffic grows.',
     icon: 'growth',
-  },
-  {
-    title: 'Dedicated Support',
-    desc: 'Post-launch maintenance, updates, and optimization when you need us.',
-    icon: 'support',
-  },
-  {
-    title: 'Global Experience',
-    desc: '150+ projects delivered for startups and enterprises across industries.',
-    icon: 'global',
   },
 ];
 
@@ -118,66 +110,101 @@ export const serviceCategories = [
   },
 ];
 
-export const megaMenuServices = {
-  design: {
-    title: 'UI/UX Design',
-    items: [
-      { title: 'UX Research & Insights', desc: 'Uncover user needs that drive design decisions.' },
-      { title: 'Experience Architecture', desc: 'Intuitive flows that make products effortless.' },
-      { title: 'Design Systems', desc: 'Scalable ecosystems for brand consistency.' },
-      { title: 'Prototyping & Testing', desc: 'Validate ideas before development.' },
-      { title: 'Web & Mobile Design', desc: 'Striking interfaces users love.' },
-    ],
+export const megaMenuServices = [
+  {
+    id: 'ui-ux',
+    title: 'UI/UX Designing',
+    desc: 'Sleek, intuitive interfaces that captivate users and drive engagement.',
+    path: '/services#ui-ux',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&q=80',
   },
-  dev: {
-    title: 'Development',
-    items: [
-      { title: 'React Development', desc: 'Modern, performant web applications.' },
-      { title: 'WordPress Development', desc: 'Flexible CMS websites.' },
-      { title: 'Shopify Development', desc: 'E-commerce that converts.' },
-      { title: 'Next.js Development', desc: 'SEO-friendly, blazing fast sites.' },
-    ],
+  {
+    id: 'cms',
+    title: 'CMS Development',
+    desc: 'Custom CMS solutions that give businesses control and flexibility.',
+    path: '/services#cms',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&q=80',
   },
-  marketing: {
-    title: 'Growth',
-    items: [
-      { title: 'SEO Optimization', desc: 'Rank higher, grow organic traffic.' },
-      { title: 'Social Media Marketing', desc: 'Build community and engagement.' },
-      { title: 'PPC Campaigns', desc: 'Targeted ads with measurable ROI.' },
-    ],
+  {
+    id: 'web-dev',
+    title: 'Full Stack Development',
+    desc: 'End-to-end web solutions with front-end and back-end expertise.',
+    path: '/services#web-dev',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&q=80',
   },
-};
+  {
+    id: 'shopify',
+    title: 'Shopify Development',
+    desc: 'High-performing Shopify stores with beautiful design and power.',
+    path: '/services#cms',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80',
+  },
+  {
+    id: 'frontend',
+    title: 'Front-End Development',
+    desc: 'High-performance front-end code — clean, responsive, animated.',
+    path: '/services#frontend',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&q=80',
+  },
+  {
+    id: 'ecommerce',
+    title: 'Web & eCommerce',
+    desc: 'Secure, conversion-focused digital shopping experiences.',
+    path: '/services#web-dev',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80',
+  },
+];
+
+export const hireExperts = [
+  { title: 'Hire PHP Developer', path: '/contact' },
+  { title: 'Hire Laravel Developer', path: '/contact' },
+  { title: 'Hire Node.js Developer', path: '/contact' },
+  { title: 'Hire WordPress Developer', path: '/contact' },
+  { title: 'Hire Frontend Developer', path: '/contact' },
+  { title: 'Hire Backend Developer', path: '/contact' },
+  { title: 'Hire Digital Marketing', path: '/contact' },
+];
 
 export const services = [
   {
     id: 'ui-ux',
     title: 'UI/UX Design',
-    description: 'Beautiful, user-centered interfaces that convert visitors into customers.',
-    items: ['Wireframing', 'Prototyping', 'Mobile UI Design', 'Web UI Design', 'UX Research', 'Design Systems'],
+    description:
+      'We create intuitive and visually stunning interfaces that elevate the user experience. From wireframes to final designs, every detail guides, engages, and converts.',
+    items: ['Web Design', 'UX Research', 'Figma Design', 'Prototyping', 'Design Systems'],
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
   },
   {
     id: 'web-dev',
     title: 'Web Development',
-    description: 'Fast, scalable websites built with modern technologies.',
-    items: ['Business Websites', 'Corporate Websites', 'Custom Solutions'],
+    description:
+      'Clean code, robust architecture, and scalable solutions — from sleek landing pages to complex web apps that are fast, secure, and fully responsive.',
+    items: ['Laravel Experts', 'Node.js Experts', 'React / Next.js', 'PostgreSQL', 'MySQL'],
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80',
   },
   {
     id: 'cms',
     title: 'CMS Development',
-    description: 'Easy-to-manage content platforms for your growing business.',
-    items: ['WordPress Development', 'Shopify Development', 'Headless CMS'],
+    description:
+      'Powerful, easy-to-use CMS platforms so you can update, edit, and expand content with confidence — no deep tech skills required.',
+    items: ['WordPress', 'Shopify', 'Headless CMS', 'Custom Admin'],
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
   },
   {
     id: 'frontend',
     title: 'Front-End Development',
-    description: 'Pixel-perfect, responsive front-ends with React and Next.js.',
-    items: ['React Development', 'Next.js Development', 'Responsive Development'],
+    description:
+      'We turn design mockups into interactive, responsive, high-performance experiences with clean code, accessibility, and smooth animations.',
+    items: ['React.js', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3'],
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
   },
   {
     id: 'marketing',
     title: 'Digital Marketing',
-    description: 'Data-driven strategies to grow your online presence.',
-    items: ['SEO', 'Social Media Marketing', 'PPC Campaigns', 'Content Marketing'],
+    description:
+      'SEO, social, paid ads, and content strategies that attract the right people — not just traffic, but accelerated growth.',
+    items: ['SEO', 'Social Media', 'PPC', 'Content Marketing'],
+    image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=800&q=80',
   },
 ];
 

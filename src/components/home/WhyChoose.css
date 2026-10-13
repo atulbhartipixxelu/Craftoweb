@@ -5,43 +5,44 @@
 .why-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
 }
 
 .why-card {
-  padding: 32px 28px;
-  transition: transform var(--transition);
+  padding: 40px 32px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  transition: background 0.35s ease;
 }
 
 .why-card:hover {
-  transform: translateY(-8px);
+  background: var(--bg-card);
 }
 
-.why-icon {
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(34, 211, 238, 0.12);
-  border: 1px solid rgba(34, 211, 238, 0.25);
-  border-radius: var(--radius);
+.why-index {
+  display: block;
+  font-family: var(--font-display);
   font-size: 1.5rem;
-  color: var(--accent-cyan);
+  font-style: italic;
+  color: var(--ochre);
   margin-bottom: 20px;
 }
 
 .why-card h3 {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 1.45rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
 }
 
 .why-card p {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 @media (max-width: 900px) {
