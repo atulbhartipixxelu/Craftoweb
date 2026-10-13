@@ -1,0 +1,27 @@
+:root {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  line-height: 1.5;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.himcab-scaffold {
+  max-width: 40rem;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.himcab-scaffold code {
+  font-size: 0.9em;
+  background: #e2e8f0;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+}

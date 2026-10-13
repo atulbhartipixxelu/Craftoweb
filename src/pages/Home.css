@@ -114,10 +114,23 @@
   color: #6a35ff;
 }
 
+
 .shine-clients span { color: #444; font-weight: 600; }
 
 .shine-hero-visual {
   position: relative;
+=======
+.work-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 32px 16px;
+}
+
+.work-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
 .shine-hero-visual > img {

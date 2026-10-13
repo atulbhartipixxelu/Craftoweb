@@ -60,6 +60,21 @@ export const usersApi = {
   update: (id, data) => api.put(`/users/${id}`, data).then((r) => r.data.data),
   delete: (id) => api.delete(`/users/${id}`),
 };
+export const contactsApi = {
+  getAll: (params) =>
+    api.get('/contacts', { params }).then((r) => r.data.data),
+  markRead: (id) =>
+    api.patch(`/contacts/${id}/read`).then((r) => r.data.data),
+  delete: (id) => api.delete(`/contacts/${id}`),
+};
+
+export const clientsApi = {
+  getAll: () => api.get('/clients').then((r) => r.data.data),
+  getById: (id) => api.get(`/clients/${id}`).then((r) => r.data.data),
+  create: (data) => api.post('/clients', data).then((r) => r.data.data),
+  update: (id, data) => api.put(`/clients/${id}`, data).then((r) => r.data.data),
+  delete: (id) => api.delete(`/clients/${id}`),
+};
 
 export const mockupsApi = {
   getAll: () => api.get('/mockups').then((r) => r.data.data),

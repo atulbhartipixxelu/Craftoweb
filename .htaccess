@@ -13,7 +13,10 @@
   # Home page → production index (not dev index.html)
   RewriteRule ^$ hostinger-public/index.html [L]
 
-  # React Router — SPA routes
+  # Sub-apps under /dev/ (HimCab, etc.) — use their own .htaccess
+  RewriteRule ^dev/ - [L]
+
+  # React Router — SPA routes (marketing site only)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ hostinger-public/index.html [L]

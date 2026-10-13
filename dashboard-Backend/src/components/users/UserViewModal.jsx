@@ -1,3 +1,5 @@
+import { formatUserRole } from '../../utils/userRoles';
+
 function UserViewModal({ user, onClose, onEdit }) {
   if (!user) return null;
 
@@ -28,7 +30,7 @@ function UserViewModal({ user, onClose, onEdit }) {
               <dt>Role</dt>
               <dd>
                 <span className={`role-badge role-${user.role}`}>
-                  {user.role === 'super_admin' ? 'Super Admin' : 'User'}
+                  {formatUserRole(user.role)}
                 </span>
               </dd>
             </div>

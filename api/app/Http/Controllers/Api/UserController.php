@@ -29,7 +29,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8',
-            'role' => ['required', Rule::in(['user', 'super_admin'])],
+            'role' => ['required', Rule::in(['user', 'super_admin', 'api_client'])],
         ]);
 
         $user = User::create([
@@ -49,7 +49,7 @@ class UserController extends Controller
             'name' => 'sometimes|string|max:255',
             'email' => ['sometimes', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => 'nullable|string|min:8',
-            'role' => ['sometimes', Rule::in(['user', 'super_admin'])],
+            'role' => ['sometimes', Rule::in(['user', 'super_admin', 'api_client'])],
         ]);
 
         if (

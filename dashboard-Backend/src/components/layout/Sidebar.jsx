@@ -75,8 +75,8 @@ function Sidebar() {
           </svg>
         </div>
         <div className="logo-text">
-          <span className="logo-title">Crftoweb</span>
-          <span className="logo-subtitle">Digital Agency</span>
+          <span className="logo-title">CraftoWeb</span>
+          <span className="logo-subtitle">Digital Agency PVT LTD </span>
         </div>
       </div>
 

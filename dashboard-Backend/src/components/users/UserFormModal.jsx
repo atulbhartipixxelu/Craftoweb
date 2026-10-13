@@ -120,6 +120,7 @@ function UserFormModal({ user, onClose, onSave }) {
               <label htmlFor="role">Role *</label>
               <select id="role" name="role" value={form.role} onChange={handleChange}>
                 <option value="user">User</option>
+                <option value="api_client">API Client</option>
                 <option value="super_admin">Super Admin</option>
               </select>
             </div>

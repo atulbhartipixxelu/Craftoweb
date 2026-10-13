@@ -4,6 +4,7 @@ import UserFormModal from '../components/users/UserFormModal';
 import UserViewModal from '../components/users/UserViewModal';
 import { useAuth } from '../context/AuthContext';
 import { usersApi } from '../services/api';
+import { formatUserRole } from '../utils/userRoles';
 import './Users.css';
 
 function Users() {
@@ -116,7 +117,7 @@ function Users() {
                         <td>{user.email}</td>
                         <td>
                           <span className={`role-badge role-${user.role}`}>
-                            {user.role === 'super_admin' ? 'Super Admin' : 'User'}
+                            {formatUserRole(user.role)}
                           </span>
                         </td>
                         <td>{user.createdAt ?? '—'}</td>

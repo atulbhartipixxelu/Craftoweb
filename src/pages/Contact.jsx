@@ -6,11 +6,14 @@ import LottiePlayer from '../components/common/LottiePlayer';
 import { companyInfo, socialLinks, lottieSources } from '../data/content';
 import './Contact.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'https://api.craftoweb.com/api';
+
 function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const validate = () => {
     const e = {};
@@ -26,10 +29,32 @@ function Contact() {
     e.preventDefault();
     if (!validate()) return;
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    setLoading(false);
-    setSubmitted(true);
-    setForm({ name: '', email: '', phone: '', subject: '', message: '' });
+    setSubmitError('');
+    try {
+      const response = await fetch(`${API_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        const msg =
+          data.message ||
+          Object.values(data.errors || {}).flat().join(' ') ||
+          'Could not send message. Please try again.';
+        setSubmitError(msg);
+        return;
+      }
+      setSubmitted(true);
+      setForm({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch {
+      setSubmitError('Network error. Please check your connection and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -108,6 +133,11 @@ function Contact() {
               ) : (
                 <motion.form key="form" onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                   <h3>Send a message</h3>
+                  {submitError && (
+                    <div className="form-error" style={{ marginBottom: '1rem', color: '#f87171' }}>
+                      {submitError}
+                    </div>
+                  )}
                   <div className="form-row">
                     <div className="form-field">
                       <label htmlFor="name">Name *</label>

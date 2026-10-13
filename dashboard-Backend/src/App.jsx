@@ -9,6 +9,8 @@ import Dashboard from './pages/Dashboard';
 import Projects from './pages/Projects';
 import DailyUpdates from './pages/DailyUpdates';
 import Users from './pages/Users';
+import Messages from './pages/Messages';
+import Clients from './pages/Clients';
 import PlaceholderPage from './pages/PlaceholderPage';
 
 function App() {
@@ -29,15 +31,7 @@ function App() {
                 <Route index element={<Dashboard />} />
                 <Route path="projects" element={<Projects />} />
                 <Route path="users" element={<Users />} />
-                <Route
-                  path="messages"
-                  element={
-                    <PlaceholderPage
-                      title="Messages"
-                      description="Manage all your client messages and communications in one place."
-                    />
-                  }
-                />
+                <Route path="messages" element={<Messages />} />
                 <Route
                   path="schedule"
                   element={
@@ -128,15 +122,7 @@ function App() {
                     />
                   }
                 />
-                <Route
-                  path="clients"
-                  element={
-                    <PlaceholderPage
-                      title="Client Management"
-                      description="Manage client information, contact details, and payment notes."
-                    />
-                  }
-                />
+                <Route path="clients" element={<Clients />} />
                 <Route
                   path="domains"
                   element={

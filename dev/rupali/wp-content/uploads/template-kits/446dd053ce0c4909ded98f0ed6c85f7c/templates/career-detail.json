@@ -1,0 +1,899 @@
+{
+    "version": "0.4",
+    "title": "Career Detail",
+    "type": "page",
+    "metadata": {
+        "template_type": "single-page",
+        "include_in_zip": "1",
+        "elementor_pro_required": "1",
+        "elementor_library_type": "page",
+        "additional_template_information": [
+            "This is a \"Page\" template for Elementor Pro."
+        ],
+        "wp_page_template": "default"
+    },
+    "content": [
+        {
+            "id": "74de1594",
+            "settings": {
+                "flex_direction": "column",
+                "padding": {
+                    "unit": "px",
+                    "top": "0",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0",
+                    "isLinked": false
+                },
+                "_title": "hero banner",
+                "content_width": "full",
+                "background_background": "gradient",
+                "background_gradient_type": "radial",
+                "background_gradient_position": "top center",
+                "background_overlay_background": "gradient",
+                "background_overlay_gradient_angle": {
+                    "unit": "deg",
+                    "size": 90,
+                    "sizes": []
+                },
+                "margin": {
+                    "unit": "%",
+                    "top": "-12",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0",
+                    "isLinked": false
+                },
+                "margin_tablet": {
+                    "unit": "%",
+                    "top": "-15",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0",
+                    "isLinked": false
+                },
+                "margin_mobile": {
+                    "unit": "%",
+                    "top": "-23",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0",
+                    "isLinked": false
+                },
+                "ekit_has_onepagescroll": "",
+                "__globals__": {
+                    "background_color": "globals\/colors?id=4857b47",
+                    "background_color_b": "globals\/colors?id=9debfa6",
+                    "background_overlay_color": "globals\/colors?id=9debfa6",
+                    "background_overlay_color_b": "globals\/colors?id=accent"
+                }
+            },
+            "elements": [
+                {
+                    "id": "4fcee95a",
+                    "settings": {
+                        "flex_direction": "column",
+                        "flex_wrap_tablet": "wrap",
+                        "margin": {
+                            "unit": "em",
+                            "top": "0",
+                            "right": "0",
+                            "bottom": "0",
+                            "left": "0",
+                            "isLinked": true
+                        },
+                        "margin_tablet": {
+                            "unit": "em",
+                            "top": "",
+                            "right": "",
+                            "bottom": "",
+                            "left": "",
+                            "isLinked": true
+                        },
+                        "margin_mobile": {
+                            "unit": "em",
+                            "top": "",
+                            "right": "",
+                            "bottom": "",
+                            "left": "",
+                            "isLinked": true
+                        },
+                        "background_overlay_image": {
+                            "url": "https:\/\/htmldesigntemplates.com\/wealthify\/wp-content\/uploads\/sites\/57\/2023\/10\/6379115-02-01.png",
+                            "id": 164,
+                            "size": "",
+                            "alt": "",
+                            "source": "library"
+                        },
+                        "flex_align_items": "center",
+                        "background_overlay_background": "classic",
+                        "background_overlay_position": "initial",
+                        "background_overlay_repeat": "repeat-x",
+                        "background_overlay_size": "contain",
+                        "background_overlay_opacity": {
+                            "unit": "px",
+                            "size": 0.15,
+                            "sizes": []
+                        },
+                        "ekit_has_onepagescroll": "",
+                        "flex_justify_content": "center",
+                        "flex_gap": {
+                            "column": "5",
+                            "row": "5",
+                            "isLinked": true,
+                            "unit": "px",
+                            "size": 5
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "1403b25",
+                            "settings": {
+                                "boxed_width": {
+                                    "unit": "px",
+                                    "size": 750,
+                                    "sizes": []
+                                },
+                                "min_height": {
+                                    "unit": "px",
+                                    "size": 350,
+                                    "sizes": []
+                                },
+                                "min_height_tablet": {
+                                    "unit": "px",
+                                    "size": 300,
+                                    "sizes": []
+                                },
+                                "min_height_mobile": {
+                                    "unit": "px",
+                                    "size": 250,
+                                    "sizes": []
+                                },
+                                "flex_justify_content": "center",
+                                "flex_align_items": "center",
+                                "flex_gap": {
+                                    "column": "5",
+                                    "row": "5",
+                                    "isLinked": true,
+                                    "unit": "px",
+                                    "size": 5
+                                },
+                                "margin": {
+                                    "unit": "px",
+                                    "top": "150",
+                                    "right": "0",
+                                    "bottom": "0",
+                                    "left": "0",
+                                    "isLinked": false
+                                },
+                                "margin_tablet": {
+                                    "unit": "px",
+                                    "top": "100",
+                                    "right": "0",
+                                    "bottom": "0",
+                                    "left": "0",
+                                    "isLinked": false
+                                }
+                            },
+                            "elements": [
+                                {
+                                    "id": "18726f7d",
+                                    "settings": {
+                                        "title": "Simple & Secure Online Banking",
+                                        "header_size": "p",
+                                        "align": "center",
+                                        "__globals__": {
+                                            "typography_typography": "globals\/typography?id=e492516",
+                                            "title_color": "globals\/colors?id=3c2ad25"
+                                        },
+                                        "align_tablet": "center",
+                                        "title_color": "#FFFFFF",
+                                        "_margin": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": false
+                                        }
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "heading",
+                                    "elType": "widget"
+                                },
+                                {
+                                    "id": "2ab99266",
+                                    "settings": {
+                                        "title": "Career Detail",
+                                        "align": "center",
+                                        "__globals__": {
+                                            "title_color": "globals\/colors?id=3c2ad25"
+                                        }
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "heading",
+                                    "elType": "widget"
+                                }
+                            ],
+                            "isInner": true,
+                            "elType": "container"
+                        }
+                    ],
+                    "isInner": true,
+                    "elType": "container"
+                }
+            ],
+            "isInner": false,
+            "elType": "container"
+        },
+        {
+            "id": "7107b4d9",
+            "settings": {
+                "flex_direction": "row",
+                "flex_gap": {
+                    "unit": "px",
+                    "size": 0,
+                    "column": "0",
+                    "row": "0"
+                },
+                "flex_direction_tablet": "column",
+                "padding": {
+                    "unit": "px",
+                    "top": "110",
+                    "right": "0",
+                    "bottom": "100",
+                    "left": "0",
+                    "isLinked": false
+                },
+                "_title": "career detail"
+            },
+            "elements": [
+                {
+                    "id": "3eee18eb",
+                    "settings": {
+                        "flex_direction": "column",
+                        "content_width": "full",
+                        "width": {
+                            "unit": "%",
+                            "size": 65
+                        },
+                        "width_tablet": {
+                            "unit": "%",
+                            "size": 100,
+                            "sizes": []
+                        },
+                        "width_mobile": {
+                            "unit": "%",
+                            "size": "",
+                            "sizes": []
+                        },
+                        "flex_gap": {
+                            "column": "5",
+                            "row": "5",
+                            "isLinked": true,
+                            "unit": "px",
+                            "size": 5
+                        },
+                        "margin": {
+                            "unit": "px",
+                            "top": "0",
+                            "right": "20",
+                            "bottom": "0",
+                            "left": "0",
+                            "isLinked": false
+                        },
+                        "margin_tablet": {
+                            "unit": "px",
+                            "top": "0",
+                            "right": "0",
+                            "bottom": "20",
+                            "left": "0",
+                            "isLinked": false
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "26340d48",
+                            "settings": {
+                                "title": "Receptionists",
+                                "header_size": "h4",
+                                "align_tablet": "center",
+                                "align_mobile": "center",
+                                "__globals__": {
+                                    "typography_typography": "globals\/typography?id=be86681",
+                                    "title_color": "globals\/colors?id=primary"
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "heading",
+                            "elType": "widget"
+                        },
+                        {
+                            "id": "699b0951",
+                            "settings": {
+                                "editor": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<\/p>",
+                                "__globals__": {
+                                    "typography_typography": "globals\/typography?id=text"
+                                },
+                                "align_tablet": "center"
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "text-editor",
+                            "elType": "widget"
+                        },
+                        {
+                            "id": "3efa795c",
+                            "settings": {
+                                "image": {
+                                    "id": 656,
+                                    "url": "https:\/\/htmldesigntemplates.com\/wealthify\/wp-content\/uploads\/sites\/57\/2023\/10\/bankers-talking-2021-09-24-03-24-53-utc.jpg",
+                                    "alt": "",
+                                    "source": "library",
+                                    "size": ""
+                                },
+                                "image_border_radius": {
+                                    "unit": "px",
+                                    "top": "0",
+                                    "right": "0",
+                                    "bottom": "0",
+                                    "left": "0",
+                                    "isLinked": true
+                                },
+                                "image_size": "full",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": "0",
+                                    "right": "0",
+                                    "bottom": "0",
+                                    "left": "0",
+                                    "isLinked": true
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "image",
+                            "elType": "widget"
+                        },
+                        {
+                            "id": "3fe49e53",
+                            "settings": {
+                                "space": {
+                                    "unit": "px",
+                                    "size": 15,
+                                    "sizes": []
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "spacer",
+                            "elType": "widget"
+                        },
+                        {
+                            "id": "10f25f97",
+                            "settings": {
+                                "tabs": [
+                                    {
+                                        "tab_title": "Job Description",
+                                        "tab_content": "<p>Reprehenderit hic bibendum repellendus, repellat auctor! Integer temporibus, facilisis iaculis alias senectus, non quam molestiae incidunt cubilia, fuga? Quasi natoque dicta a fuga dapibus dolore molestie sociis erat, convallis quibusdam possimus semper nonummy mattis, quasi.<\/p><p>Autem nec quaerat cubilia magnam eu mauris hic hac nisi eos nobis officiis corrupti consequuntur molestie urna volutpat! Quos diamlorem convallis vestibulum doloremque iste facilisi.<\/p><ul><li><p>Education and Experience:<\/p><ul><li>A bachelor's degree in computer science, software engineering, or a related field is often preferred but not always required.<\/li><li>Prior experience in Android app development is valuable, whether through personal projects, internships, or professional experience.<ul><li>Proficiency in Java or Kotlin, which are the primary languages used for Android app development.<\/li><li>Familiarity with Android SDK, Android Studio, and the Android development ecosystem.<\/li><li>Understanding of object-oriented programming (OOP) concepts.<\/li><\/ul><\/li><\/ul><\/li><li><p>Android Development Skills:<\/p><ul><li>Knowledge of the Android application components such as activities, fragments, services, and broadcast receivers.<\/li><li>Experience with UI\/UX design principles and ability to create visually appealing and user-friendly interfaces using XML and\/or Kotlin.<\/li><li>Understanding of data storage options on Android, such as SQLite databases, SharedPreferences, and content providers.<\/li><\/ul><\/li><\/ul>",
+                                        "_id": "57e6771"
+                                    },
+                                    {
+                                        "tab_title": "Experience & Overview",
+                                        "tab_content": "<h6>Overview<\/h6>\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n<h6>Experiences<\/h6>\n<ul>\n \t<li>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui<\/li>\n \t<li>Netus donec justo mauris etiam velit.<\/li>\n \t<li>Quis dolorum habitasse accusantium hic consequat.<\/li>\n \t<li>Mus quasi aute non, at, saepe? Commodi sodales aliquam voluptatum.<\/li>\n \t<li>Adipisicing ullamcorper dapibus, consequatur itaque eros orci odio.<\/li>\n<\/ul>",
+                                        "_id": "9828de9"
+                                    },
+                                    {
+                                        "tab_title": "Requirement",
+                                        "tab_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.Venenatis cupidatat rem sociosqu platea. Earum felis consequatur adipisci minus viverra, nullam molestias nibh conubia.<\/p><ul><li>Excepteur sint .occaecat cupidatat non proident, sunt in culpa qui<\/li><li>Netus donec justo mauris etiam velit.<\/li><li>Quis dolorum habitasse accusantium hic consequat.<\/li><li>Mus quasi aute non, at, saepe? Commodi sodales aliquam voluptatum.<\/li><li>Adipisicing ullamcorper dapibus, consequatur itaque eros orci odio.<\/li><\/ul>",
+                                        "_id": "7ed8416"
+                                    }
+                                ],
+                                "border_color": "#D9D9D9",
+                                "__globals__": {
+                                    "tab_active_color": "globals\/colors?id=9debfa6",
+                                    "tab_typography_typography": "globals\/typography?id=e492516",
+                                    "content_typography_typography": "globals\/typography?id=text",
+                                    "border_color": "",
+                                    "background_color": "globals\/colors?id=3c2ad25",
+                                    "tab_color": "globals\/colors?id=secondary",
+                                    "content_color": "globals\/colors?id=text"
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "tabs",
+                            "elType": "widget"
+                        }
+                    ],
+                    "isInner": true,
+                    "elType": "container"
+                },
+                {
+                    "id": "64aaabf1",
+                    "settings": {
+                        "flex_direction": "column",
+                        "content_width": "full",
+                        "width": {
+                            "unit": "%",
+                            "size": 35
+                        },
+                        "width_tablet": {
+                            "unit": "%",
+                            "size": 100,
+                            "sizes": []
+                        },
+                        "width_mobile": {
+                            "unit": "%",
+                            "size": "",
+                            "sizes": []
+                        },
+                        "flex_gap": {
+                            "column": "0",
+                            "row": "0",
+                            "isLinked": true,
+                            "unit": "px",
+                            "size": 0
+                        },
+                        "margin": {
+                            "unit": "px",
+                            "top": "0",
+                            "right": "0",
+                            "bottom": "0",
+                            "left": "20",
+                            "isLinked": false
+                        },
+                        "margin_tablet": {
+                            "unit": "px",
+                            "top": "0",
+                            "right": "0",
+                            "bottom": "0",
+                            "left": "0",
+                            "isLinked": false
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "7eff6dea",
+                            "settings": {
+                                "flex_gap": {
+                                    "column": "10",
+                                    "row": "10",
+                                    "isLinked": true,
+                                    "unit": "px",
+                                    "size": 10
+                                },
+                                "border_border": "solid",
+                                "border_width": {
+                                    "unit": "px",
+                                    "top": "3",
+                                    "right": "3",
+                                    "bottom": "3",
+                                    "left": "3",
+                                    "isLinked": true
+                                },
+                                "margin": {
+                                    "unit": "px",
+                                    "top": "0",
+                                    "right": "0",
+                                    "bottom": "30",
+                                    "left": "0",
+                                    "isLinked": false
+                                },
+                                "padding": {
+                                    "unit": "px",
+                                    "top": "30",
+                                    "right": "30",
+                                    "bottom": "30",
+                                    "left": "30",
+                                    "isLinked": true
+                                },
+                                "__globals__": {
+                                    "border_color": "globals\/colors?id=ebb6ff1"
+                                }
+                            },
+                            "elements": [
+                                {
+                                    "id": "61f618c9",
+                                    "settings": {
+                                        "title": "How To Apply?",
+                                        "header_size": "h5",
+                                        "align": "center",
+                                        "__globals__": {
+                                            "title_color": "",
+                                            "typography_typography": "globals\/typography?id=94485de",
+                                            "_border_color": "globals\/colors?id=accent"
+                                        },
+                                        "align_tablet": "center",
+                                        "_padding": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": true
+                                        },
+                                        "_border_width": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "4",
+                                            "isLinked": false
+                                        },
+                                        "_padding_tablet": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": false
+                                        },
+                                        "_border_width_tablet": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": false
+                                        },
+                                        "_margin": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": false
+                                        },
+                                        "align_mobile": "center",
+                                        "_border_color": "#186560"
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "heading",
+                                    "elType": "widget"
+                                },
+                                {
+                                    "id": "455c02d3",
+                                    "settings": {
+                                        "space": {
+                                            "unit": "px",
+                                            "size": 5,
+                                            "sizes": []
+                                        }
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "spacer",
+                                    "elType": "widget"
+                                },
+                                {
+                                    "id": "4be23cf1",
+                                    "settings": {
+                                        "icon_list": [
+                                            {
+                                                "text": "Excepteur sint occaecat cupidatat ",
+                                                "selected_icon": {
+                                                    "value": "jki jki-check-circle-solid",
+                                                    "library": "jkiticon"
+                                                },
+                                                "_id": "6de9337"
+                                            },
+                                            {
+                                                "text": "Duis aute irure dolor in reprehenderit",
+                                                "selected_icon": {
+                                                    "value": "jki jki-check-circle-solid",
+                                                    "library": "jkiticon"
+                                                },
+                                                "_id": "9060b2e"
+                                            },
+                                            {
+                                                "text": "Sociosqu scelerisque adipisci.",
+                                                "selected_icon": {
+                                                    "value": "jki jki-check-circle-solid",
+                                                    "library": "jkiticon"
+                                                },
+                                                "_id": "c3834ad"
+                                            },
+                                            {
+                                                "text": "Purus eveniet incidi dunt.",
+                                                "selected_icon": {
+                                                    "value": "jki jki-check-circle-solid",
+                                                    "library": "jkiticon"
+                                                },
+                                                "_id": "3deb823"
+                                            },
+                                            {
+                                                "text": "Animi atque ornare iaculis.",
+                                                "selected_icon": {
+                                                    "value": "jki jki-check-circle-solid",
+                                                    "library": "jkiticon"
+                                                },
+                                                "_id": "1a6b5fe"
+                                            }
+                                        ],
+                                        "space_between": {
+                                            "unit": "px",
+                                            "size": 35,
+                                            "sizes": []
+                                        },
+                                        "_margin": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": true
+                                        },
+                                        "__globals__": {
+                                            "icon_color": "globals\/colors?id=secondary",
+                                            "text_color": "globals\/colors?id=primary",
+                                            "icon_typography_typography": "globals\/typography?id=3ad3076"
+                                        },
+                                        "divider": "yes",
+                                        "divider_style": "dashed"
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "icon-list",
+                                    "elType": "widget"
+                                }
+                            ],
+                            "isInner": true,
+                            "elType": "container"
+                        },
+                        {
+                            "id": "335dfe6",
+                            "settings": {
+                                "flex_gap": {
+                                    "column": "18",
+                                    "row": "18",
+                                    "isLinked": true,
+                                    "unit": "px",
+                                    "size": 18
+                                },
+                                "background_background": "gradient",
+                                "border_border": "none",
+                                "border_width": {
+                                    "unit": "px",
+                                    "top": "2",
+                                    "right": "2",
+                                    "bottom": "2",
+                                    "left": "2",
+                                    "isLinked": true
+                                },
+                                "margin": {
+                                    "unit": "px",
+                                    "top": "0",
+                                    "right": "0",
+                                    "bottom": "0",
+                                    "left": "0",
+                                    "isLinked": false
+                                },
+                                "padding": {
+                                    "unit": "px",
+                                    "top": "30",
+                                    "right": "30",
+                                    "bottom": "30",
+                                    "left": "30",
+                                    "isLinked": true
+                                },
+                                "__globals__": {
+                                    "border_color": "globals\/colors?id=ebb6ff1",
+                                    "background_color": "globals\/colors?id=9debfa6",
+                                    "background_color_b": "globals\/colors?id=secondary"
+                                }
+                            },
+                            "elements": [
+                                {
+                                    "id": "1778ec56",
+                                    "settings": {
+                                        "selected_icon": {
+                                            "value": "jki jki-phone1-light",
+                                            "library": "jkiticon"
+                                        },
+                                        "view": "stacked",
+                                        "__globals__": {
+                                            "primary_color": "globals\/colors?id=3c2ad25",
+                                            "secondary_color": "globals\/colors?id=secondary"
+                                        },
+                                        "size": {
+                                            "unit": "px",
+                                            "size": 32,
+                                            "sizes": []
+                                        },
+                                        "icon_padding": {
+                                            "unit": "px",
+                                            "size": 30,
+                                            "sizes": []
+                                        }
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "icon",
+                                    "elType": "widget"
+                                },
+                                {
+                                    "id": "b48dbb4",
+                                    "settings": {
+                                        "title": "Send us your C.V.",
+                                        "header_size": "h5",
+                                        "align": "center",
+                                        "align_mobile": "center",
+                                        "__globals__": {
+                                            "typography_typography": "globals\/typography?id=94485de",
+                                            "title_color": "globals\/colors?id=3c2ad25"
+                                        }
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "heading",
+                                    "elType": "widget"
+                                },
+                                {
+                                    "id": "434b6f08",
+                                    "settings": {
+                                        "editor": "<p>Do you want to work with us? Please, send your CV to contact@wealthify.com<\/p>",
+                                        "typography_font_family": "Poppins",
+                                        "typography_font_size": {
+                                            "unit": "px",
+                                            "size": 16,
+                                            "sizes": []
+                                        },
+                                        "typography_font_weight": "normal",
+                                        "typography_line_height": {
+                                            "unit": "em",
+                                            "size": 1.5,
+                                            "sizes": []
+                                        },
+                                        "align": "center",
+                                        "_padding_tablet": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": false
+                                        },
+                                        "_padding_mobile": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": false
+                                        },
+                                        "align_mobile": "center",
+                                        "_margin": {
+                                            "unit": "px",
+                                            "top": "0",
+                                            "right": "0",
+                                            "bottom": "-14",
+                                            "left": "0",
+                                            "isLinked": false
+                                        },
+                                        "__globals__": {
+                                            "text_color": "globals\/colors?id=3c2ad25"
+                                        }
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "text-editor",
+                                    "elType": "widget"
+                                },
+                                {
+                                    "id": "41f3f57",
+                                    "settings": {
+                                        "width": {
+                                            "unit": "%",
+                                            "size": 30,
+                                            "sizes": []
+                                        },
+                                        "align": "center",
+                                        "look": "line_text",
+                                        "text": "OR",
+                                        "gap": {
+                                            "unit": "px",
+                                            "size": 5,
+                                            "sizes": []
+                                        },
+                                        "__globals__": {
+                                            "text_color": "globals\/colors?id=3c2ad25",
+                                            "typography_typography": "globals\/typography?id=text",
+                                            "color": "globals\/colors?id=3c2ad25"
+                                        }
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "divider",
+                                    "elType": "widget"
+                                },
+                                {
+                                    "id": "38f60ef7",
+                                    "settings": {
+                                        "text": "CONTACT US",
+                                        "align": "center",
+                                        "typography_font_family": "Montserrat",
+                                        "typography_font_size": {
+                                            "unit": "px",
+                                            "size": 15,
+                                            "sizes": []
+                                        },
+                                        "typography_font_weight": "600",
+                                        "typography_text_transform": "uppercase",
+                                        "typography_line_height": {
+                                            "unit": "em",
+                                            "size": 1,
+                                            "sizes": []
+                                        },
+                                        "button_hover_border_color": "#030F27",
+                                        "border_width": {
+                                            "unit": "px",
+                                            "top": "1",
+                                            "right": "1",
+                                            "bottom": "1",
+                                            "left": "1",
+                                            "isLinked": true
+                                        },
+                                        "typography_font_size_mobile": {
+                                            "unit": "px",
+                                            "size": 15,
+                                            "sizes": []
+                                        },
+                                        "text_padding_mobile": {
+                                            "unit": "px",
+                                            "top": "18",
+                                            "right": "25",
+                                            "bottom": "18",
+                                            "left": "25",
+                                            "isLinked": false
+                                        },
+                                        "align_mobile": "center",
+                                        "align_tablet": "center",
+                                        "_margin": {
+                                            "unit": "px",
+                                            "top": "2",
+                                            "right": "0",
+                                            "bottom": "0",
+                                            "left": "0",
+                                            "isLinked": false
+                                        },
+                                        "__globals__": {
+                                            "button_background_hover_color": "globals\/colors?id=primary",
+                                            "background_color": "globals\/colors?id=3c2ad25",
+                                            "button_text_color": "globals\/colors?id=accent",
+                                            "hover_color": "globals\/colors?id=3c2ad25"
+                                        },
+                                        "selected_icon": {
+                                            "value": "jki jki-arrow-right-light",
+                                            "library": "jkiticon"
+                                        },
+                                        "icon_align": "right",
+                                        "icon_indent": {
+                                            "unit": "px",
+                                            "size": 10,
+                                            "sizes": []
+                                        }
+                                    },
+                                    "elements": [],
+                                    "isInner": false,
+                                    "widgetType": "button",
+                                    "elType": "widget"
+                                }
+                            ],
+                            "isInner": true,
+                            "elType": "container"
+                        }
+                    ],
+                    "isInner": true,
+                    "elType": "container"
+                }
+            ],
+            "isInner": false,
+            "elType": "container"
+        }
+    ]
+}

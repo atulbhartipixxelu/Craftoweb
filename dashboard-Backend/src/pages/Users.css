@@ -48,6 +48,11 @@
   color: #818cf8;
 }
 
+.role-api_client {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
 .users-error {
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.3);
