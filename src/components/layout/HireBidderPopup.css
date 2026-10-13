@@ -1,0 +1,290 @@
+.hire-bidder-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1400;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(10, 14, 9, 0.55);
+  backdrop-filter: blur(10px);
+  perspective: 1200px;
+}
+
+.hire-bidder-modal {
+  position: relative;
+  width: min(100%, 720px);
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md), 0 0 0 1px color-mix(in srgb, var(--lime) 25%, transparent);
+  transform-style: preserve-3d;
+}
+
+.hire-bidder-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--bg-raised) 80%, transparent);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.hire-bidder-close:hover {
+  background: var(--bg-muted);
+  transform: rotate(90deg);
+}
+
+.hire-bidder-visual {
+  position: relative;
+  min-height: 320px;
+  background:
+    linear-gradient(160deg, #10160e 0%, #1a2714 45%, #0d120c 100%);
+  overflow: hidden;
+}
+
+.hire-bidder-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: hire-orb 7s ease-in-out infinite;
+}
+
+.hire-bidder-orb--a {
+  width: 180px;
+  height: 180px;
+  top: -30px;
+  left: -40px;
+  background: radial-gradient(circle, rgba(184, 255, 60, 0.55), transparent 70%);
+}
+
+.hire-bidder-orb--b {
+  width: 160px;
+  height: 160px;
+  right: -30px;
+  bottom: 20px;
+  background: radial-gradient(circle, rgba(61, 139, 255, 0.4), transparent 70%);
+  animation-delay: -2.5s;
+}
+
+.hire-bidder-radar {
+  position: absolute;
+  inset: 18% 12%;
+  border-radius: 50%;
+  border: 1px dashed rgba(184, 255, 60, 0.35);
+}
+
+.hire-bidder-radar span {
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 255, 60, 0.18);
+}
+
+.hire-bidder-radar span:nth-child(2) {
+  inset: 34%;
+}
+
+.hire-bidder-radar span:nth-child(3) {
+  inset: 50%;
+  background: rgba(184, 255, 60, 0.15);
+  box-shadow: 0 0 30px rgba(184, 255, 60, 0.35);
+  animation: hire-ping 2.2s ease-out infinite;
+}
+
+.hire-bidder-pulse {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  color: #f4f7f0;
+  min-width: 150px;
+}
+
+.hire-bidder-pulse strong {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: #b8ff3c;
+  margin-bottom: 4px;
+}
+
+.hire-bidder-pulse em {
+  font-style: normal;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hire-bidder-body {
+  padding: 36px 34px 32px;
+}
+
+.hire-bidder-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--lime-dim);
+  color: var(--lime-deep);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hire-bidder-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 0 4px var(--lime-dim);
+  animation: hire-dot 1.6s ease-in-out infinite;
+}
+
+.hire-bidder-body h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.hire-bidder-body h2 em {
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  color: var(--lime-deep);
+}
+
+[data-theme='dark'] .hire-bidder-body h2 em {
+  color: var(--lime);
+}
+
+.hire-bidder-body > p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.hire-bidder-roles {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.hire-bidder-roles li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-muted);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.hire-bidder-roles li:hover {
+  border-color: color-mix(in srgb, var(--lime) 50%, var(--border));
+  transform: translateY(-2px);
+}
+
+.hire-bidder-roles span {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.hire-bidder-roles strong {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--lime-deep);
+}
+
+.hire-bidder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@keyframes hire-orb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(18px, 12px) scale(1.08);
+  }
+}
+
+@keyframes hire-ping {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hire-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 720px) {
+  .hire-bidder-modal {
+    grid-template-columns: 1fr;
+    max-height: min(92vh, 720px);
+    overflow-y: auto;
+  }
+
+  .hire-bidder-visual {
+    min-height: 160px;
+  }
+
+  .hire-bidder-body {
+    padding: 24px 20px 22px;
+  }
+
+  .hire-bidder-pulse {
+    bottom: 16px;
+    padding: 8px 14px;
+  }
+}

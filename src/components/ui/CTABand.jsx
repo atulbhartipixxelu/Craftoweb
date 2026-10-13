@@ -3,14 +3,13 @@ import { HiOutlineArrowRight } from 'react-icons/hi';
 import './CTABand.css';
 
 function CTABand({
-  title = 'Ready to build something extraordinary?',
-  subtitle = "Let's discuss your project and create a digital experience your users will love.",
-  buttonText = 'Start a Project',
+  title = 'Ready to empower your business with better IT?',
+  subtitle = "Let's map the roadmap and ship something your users will remember.",
+  buttonText = "Let's talk",
   buttonTo = '/contact',
 }) {
   return (
     <section className="cta-band">
-      <div className="cta-band-glow" aria-hidden="true" />
       <div className="container cta-band-inner">
         <div>
           <h2 className="display-lg">{title}</h2>

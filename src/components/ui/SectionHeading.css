@@ -9,13 +9,14 @@
   margin-right: auto;
 }
 
-.section-heading.center .eyebrow {
-  justify-content: center;
+.section-heading-title {
+  margin: 0;
 }
 
 .section-heading-desc {
   margin-top: 16px;
-  font-size: 1.0625rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
   line-height: 1.75;
+  font-weight: 400;
 }

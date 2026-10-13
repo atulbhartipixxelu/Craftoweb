@@ -1,29 +1,37 @@
 import { Link } from 'react-router-dom';
-import { HiOutlineArrowRight } from 'react-icons/hi';
-import LottiePlayer from '../common/LottiePlayer';
-import SectionHeading from '../ui/SectionHeading';
-import { lottieSources } from '../../data/content';
+import { achievements } from '../../data/content';
+import AnimatedCounter from '../common/AnimatedCounter';
 import './CompanyIntro.css';
 
 function CompanyIntro() {
   return (
     <section className="section company-intro">
       <div className="container company-intro-grid">
-        <div className="gsap-reveal-left company-intro-lottie card-glass">
-          <LottiePlayer src={lottieSources.hero} />
-        </div>
-        <div className="gsap-reveal-right company-intro-text">
-          <SectionHeading
-            eyebrow="Company Introduction"
-            title="CraftoWeb — your partner in digital excellence"
-            description="We are a full-service IT agency specializing in UI/UX design, web development, CMS platforms, and digital marketing. Since 2017, we've helped businesses worldwide build websites and applications that users love and businesses trust."
-          />
+        <div className="company-intro-text gsap-reveal-left" data-aos="fade-right">
+          <span className="eyebrow">About the studio</span>
+          <h2 className="display-lg">
+            A digital studio that still believes in <em>craft</em>.
+          </h2>
           <p>
-            From startups launching their first MVP to enterprises scaling global platforms, our team combines creative design with robust engineering using React, Next.js, WordPress, and Shopify.
+            CraftoWeb builds websites and products with intention — sharp design, solid engineering, and a clear point of view. No template feel. No noisy trends.
+          </p>
+          <p>
+            Since 2017 we have partnered with startups and growing brands across React, Next.js, WordPress, Shopify, and digital growth.
           </p>
           <Link to="/about" className="btn btn-primary">
-            Learn About Us <HiOutlineArrowRight />
+            Our story
           </Link>
+        </div>
+
+        <div className="company-intro-stats gsap-reveal-right" data-aos="fade-left">
+          {achievements.map((a) => (
+            <div key={a.label} className="company-stat">
+              <strong>
+                <AnimatedCounter end={a.value} suffix={a.suffix} />
+              </strong>
+              <span>{a.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

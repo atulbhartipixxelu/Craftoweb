@@ -1,0 +1,36 @@
+.rx-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 28px;
+  position: relative;
+}
+
+.rx-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-base);
+  flex-shrink: 0;
+}
+
+.rx-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.rx-width {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 8px;
+  background: var(--bg-base);
+  color: var(--text-muted);
+  font-family: var(--font-alt);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}

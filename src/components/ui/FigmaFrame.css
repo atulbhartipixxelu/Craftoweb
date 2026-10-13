@@ -1,0 +1,44 @@
+.figma-frame {
+  --figma: #18a0fb;
+  position: relative;
+  border: 1px solid var(--figma);
+  padding: 8px;
+  width: 100%;
+}
+
+.figma-frame__label {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  color: var(--figma);
+  font-family: var(--font-alt);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.figma-frame__handle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border: 1.5px solid var(--figma);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.figma-frame__handle.tl { top: 0; left: 0; }
+.figma-frame__handle.tc { top: 0; left: 50%; }
+.figma-frame__handle.tr { top: 0; left: 100%; }
+.figma-frame__handle.ml { top: 50%; left: 0; }
+.figma-frame__handle.mr { top: 50%; left: 100%; }
+.figma-frame__handle.bl { top: 100%; left: 0; }
+.figma-frame__handle.bc { top: 100%; left: 50%; }
+.figma-frame__handle.br { top: 100%; left: 100%; }
+
+.figma-frame__body {
+  overflow: hidden;
+  background: #0a0a0a;
+}
